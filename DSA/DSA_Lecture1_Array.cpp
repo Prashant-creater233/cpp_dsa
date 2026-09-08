@@ -50,6 +50,8 @@ using namespace std;
 //     return 0;
 // }
 
+
+
 // for largest 
 // int main(){
 //     int larg[] = {3,87,767,45,67,90};
@@ -101,28 +103,31 @@ using namespace std;
 // }
 
 
+
+
 // Linear Search
 
-int linearSearch(int arr[], int size, int target) {
-    for(int i=0; i<size; i++){
-        if(arr[i] == target){  // FOUND
-            return i;
-        }
-    }
+// int linearSearch(int arr[], int size, int target) {
+//     for(int i=0; i<size; i++){
+//         if(arr[i] == target){  // FOUND
+//             return i;
+//         }
+//     }
 
-    return -1;  // indicate NOT FOUND
-}
+//     return -1;  // indicate NOT FOUND
+// }
 
-int main(){
-    int arr[] = {4, 2, 7, 8, 1, 2, 5};
-    int size = 7;
 
-    int target = 8;
+// int main(){
+//     int arr[] = {4, 2, 7, 8, 1, 2, 5};
+//     int size = 7;
 
-    cout << linearSearch(arr, size , target) << endl;
+//     int target = 8;
 
-    return 0;
-}
+//     cout << linearSearch(arr, size , target) << endl;
+
+//     return 0;
+// }
 
 
 // Reverse of a Array
@@ -204,26 +209,26 @@ int main(){
 
 // 3 WAP to print all the unique values in an array..
 
-// int main(){
-//     int arr[]= {1,2,5,3,1,2,3,4,6};
-//     int size = 9;
+int main(){
+    int arr[]= {1,2,5,3,1,2,3,4,6};
+    int size = 9;
 
-//     for(int i=0; i<size; i++){
-//         int count=0;
+    for(int i=0; i<size; i++){
+        int count=0;
 
-//         for(int j=0; j<size; j++){
-//             if(arr[i] == arr[j]){
-//                 count++;
-//             }
-//         }
+        for(int j=0; j<size; j++){
+            if(arr[i] == arr[j]){
+                count++;
+            }
+        }
 
-//         if(count == 1){
-//             cout << arr[i] << " ";
-//         }
-//     }
+        if(count == 1){
+            cout << arr[i] << " ";
+        }
+    }
 
-//     return 0;
-// }
+    return 0;
+}
 
 
 //WAF to print intersection of 2 arrays
