@@ -45,25 +45,25 @@ using namespace std;
 
 // lowercase or uppercase
 
-// int main(){
-//     char ch;
-//     cout << "enter char: ";
-//     cin >> ch;
+int main(){
+    char ch;
+    cout << "enter char: ";
+    cin >> ch;
 
-//     if(ch>= 'a' && ch<= 'z'){
-//         cout << "lowercase\n";
-//     } else {
-//         cout << "uppercase\n";
-//     }
-//     return 0;
-// }
+    if(ch>= 'a' && ch<= 'z'){
+        cout << "lowercase\n";
+    } else {
+        cout << "uppercase\n";
+    }
+    return 0;
+}
 
 //Ternary operator
 
-int main(){
-    int n = 45;
+// int main(){
+//     int n = 45;
 
-    cout << (n >= 0 ? "Positive" : "Negative") << endl;
-    cout << (n <30? "Yes" : "NO") << endl;
-    return 0;
-}
+//     cout << (n >= 0 ? "Positive" : "Negative") << endl;
+//     cout << (n <30? "Yes" : "NO") << endl;
+//     return 0;
+// }

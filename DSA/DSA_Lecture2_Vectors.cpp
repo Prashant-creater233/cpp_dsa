@@ -123,6 +123,26 @@ using namespace std;
 //     cout << "max subarray sum = " << maxSum << endl;
 // }
 
+// no of subarrays formula n*(n+1)/2
+// Maximum subarray sum  by most optimizal approcah O(n)  by kadanes rule
+// int main() {
+//         int n =5;
+//         int nums[5]={1,2,3,4,5};
+
+//         int currSum=0, maxSum=INT_MIN;
+
+//         for(int i=0; i<n; i++){
+//             currSum += nums[i];
+//             maxSum = max(currSum, maxSum);
+
+//             if(currSum < 0){
+//                 currSum=0;
+//             }
+//         }
+//         cout << "max subarray sum = " << maxSum << endl;
+//         return 0;
+//     }
+
 
 
 //Pair sum
@@ -148,33 +168,110 @@ using namespace std;
 
 // pair sum by optimizal approach
 
-vector<int> pairSum(vector<int> nums, int target) {
-    vector<int> ans;
-    int n = nums.size();
+// vector<int> pairSum(vector<int> nums, int target) {
+//     vector<int> ans;
+//     int n = nums.size();
 
-    int i=0 , j = n-1;
+//     int i=0 , j = n-1;
 
-    while(i < j){
-        int pairSum = nums[i] + nums[j];
+//     while(i < j){
+//         int pairSum = nums[i] + nums[j];
 
-        if(pairSum > target) {
-            j--;
-        } else if(pairSum < target){
-            i++;
-        } else{
-            ans.push_back(i);
-            ans.push_back(j);
-            return ans;
-        }
-    }
-    return ans;
-}
+//         if(pairSum > target) {
+//             j--;
+//         } else if(pairSum < target){
+//             i++;
+//         } else{
+//             ans.push_back(i);
+//             ans.push_back(j);
+//             return ans;
+//         }
+//     }
+//     return ans;
+// }
 
-int main() {
-    vector<int> nums = {2, 7, 11, 15};
-    int target = 13;
+// int main() {
+//     vector<int> nums = {2, 7, 11, 15};
+//     int target = 13;
 
-    vector<int> ans = pairSum(nums, target);
-    cout << ans[0] << ", " << ans[1] << endl;
-    return 0;
-}
+//     vector<int> ans = pairSum(nums, target);
+//     cout << ans[0] << ", " << ans[1] << endl;
+//     return 0;
+// }
+
+
+
+// Container with most water
+
+//by brute force approach
+
+// class Solution {
+// public:
+//     int maxArea(vector<int>& height) {
+//         int maxWater = 0;
+
+//         for(int i=0; i<height.size(); i++){
+//             for(int j=i+1; j<height.size(); j++){
+//                 int w = j-i;
+//                 int ht = min(height[i], height[j]);
+//                 int currWater = w * ht;
+
+//                 maxWater = max(maxWater, currWater);
+//             }
+//         }
+//         return maxWater;
+//     }
+// };
+
+
+
+
+// Product of array except self
+// brute force approach
+// class Solution {
+// public:
+//     vector<int> productExceptSelf(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int> ans(n, 1);
+
+//         for(int i=0; i<n; i++){
+//             for(int j=0; j<n; j++){
+//                 if(i != j){
+//                     ans[i] *= nums[j];
+//                 }
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+// opttimize approach
+
+// class Solution {
+// public:
+//     vector<int> productExceptSelf(vector<int>& nums) {
+//         int n = nums.size();
+//         vector<int> ans(n, 1);
+//         vector<int> prefix(n, 1);
+//         vector<int> suffix(n, 1);
+
+//         // prefix
+//         for(int i=1; i<n; i++){
+//             prefix[i] = prefix[i-1] * nums[i-1];
+//         }
+
+//         //suffix
+//         for(int i=n-2; i>=0; i--){
+//             suffix[i] = suffix[i+1] * nums[i+1];
+//         }
+
+//         for(int i=0; i<n; i++){
+//             ans[i] = prefix[i] * suffix[i];
+//         }
+
+//         return ans;
+//     }
+// };
+
+
+// optimisung approach time comp same hi rhnegi uper wali hi O(n) but space complexity me dono vector ko hta denge
