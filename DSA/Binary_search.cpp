@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 // For Iterative Binary Search
@@ -179,58 +180,160 @@ using namespace std;
 
 // Book Allocation of Allocate Books Problem 
 
-bool isValid(vector<int> &arr, int n, int m, int maxAllowedPages) {   //O(n)
-    int students=1, pages=0;
+// bool isValid(vector<int> &arr, int n, int m, int maxAllowedPages) {   //O(n)
+//     int students=1, pages=0;
+
+//     for(int i=0; i<n; i++) {
+//         if(arr[i] > maxAllowedPages){
+//             return false;
+//         }
+
+//         if(pages + arr[i] <= maxAllowedPages) {
+//             pages += arr[i];
+//         } else {
+//             students++;
+//             pages = arr[i];
+//         }
+//     }
+//     return students > m ? false : true;
+// }
+
+// int allocateBooks(vector<int> &arr, int n, int m){   // O(log * n)
+//     if(m > n) {  //edge case
+//         return -1;
+//     }
+
+//     int sum = 0;
+//     for(int i=0; i<n; i++) {
+//         sum += arr[i];
+//     }
+
+//     int ans = 0;
+//     int st = 0, end = sum; // range of possible ans
+
+//     while(st <= end) { //O(logN) * n
+//         int mid = st + (end-st)/2;
+
+//         if(isValid(arr, n, m, mid)) { //left
+//             ans = mid;
+//             end = mid - 1;
+//         } else {
+//             st = mid + 1;
+//         }
+//     }
+//     return ans;
+
+// }
+
+
+// int main() {
+//     // vector<int> arr = {2, 1, 3, 4}; //6
+//     // int n = 4, m = 2;
+
+//     vector<int> arr = {15, 17, 20}; //32
+//     int n = 3, m = 2;
+
+//     cout << allocateBooks(arr, n, m) << endl;
+// }
+
+
+
+
+// Pinters Partition Problem
+
+bool isPossible(vector<int> &arr, int n, int m, int maxAllowedTime) {  // O(n)
+    int painters = 1, time = 0;
 
     for(int i=0; i<n; i++) {
-        if(arr[i] > maxAllowedPages){
-            return false;
-        }
-
-        if(pages + arr[i] <= maxAllowedPages) {
-            pages += arr[i];
-        } else {
-            students++;
-            pages = arr[i];
+        if(time + arr[i] <=  maxAllowedTime){
+            time += arr[i];
+        } else { //new painter
+            painters++;
+            time = arr[i];
         }
     }
-    return students > m ? false : true;
+
+    return painters <= m;
 }
 
-int allocateBooks(vector<int> &arr, int n, int m){   // O(log * n)
-    if(m > n) {  //edge case
-        return -1;
-    }
-
-    int sum = 0;
-    for(int i=0; i<n; i++) {
+int minTimeToPaint(vector<int> &arr, int n, int m) { 
+    int sum =0, maxValue = INT_MIN;
+    for(int i=0; i<n;i++) {   //O(n)
         sum += arr[i];
+        maxValue = max(maxValue, arr[i]);
     }
 
-    int ans = 0;
-    int st = 0, end = sum; // range of possible ans
+    int ans = -1;
+    int st = maxValue, end = sum; // range of possible ans
 
-    while(st <= end) { //O(logN)
+    while(st <= end) { //  O(log(sum)) * n
         int mid = st + (end-st)/2;
 
-        if(isValid(arr, n, m, mid)) { //left
+        if(isPossible(arr, n, m , mid)) { // left
             ans = mid;
             end = mid - 1;
-        } else {
+        } else { // right
             st = mid + 1;
         }
     }
     return ans;
+}
 
+int main(){
+    vector<int> arr = {40, 30, 10, 20};
+    int n = 4, m = 2;
+
+    cout << minTimeToPaint(arr, n, m) << endl;
+
+    return 0;
 }
 
 
-int main() {
-    // vector<int> arr = {2, 1, 3, 4}; //6
-    // int n = 4, m = 2;
 
-    vector<int> arr = {15, 17, 20}; //32
-    int n = 3, m = 2;
 
-    cout << allocateBooks(arr, n, m) << endl;
-}
+// Aggressive cows  problem 
+
+
+// bool isPossible(vector<int> &arr, int N, int C, int minallowedDistance){ // O(N)
+//     int cows = 1, lastStallPos = arr[0];
+
+//     for(int i=0; i<N; i++){
+//         if(arr[i] - lastStallPos >= minallowedDistance){
+//             cows++;
+//             lastStallPos = arr[i];
+//         }
+
+//         if(cows == C){
+//             return true;
+//         }
+//     }
+//     return false;
+// }
+
+// int getDistance(vector<int> &arr, int N, int C) {
+//     sort(arr.begin(), arr.end());
+
+//     int st = 1, end = arr[N-1]-arr[0], ans = -1;
+
+//     while(st <= end){ // O(log(Range) * N)
+//         int mid = st + (end-st)/2;
+
+//         if(isPossible(arr, N, C, mid)) { // right
+//             ans = mid;
+//             st = mid + 1;
+//         } else{ // left
+//             end = mid - 1;
+//         }
+//     }
+//     return ans;
+// }
+
+
+// int main(){
+//     vector<int> arr = {1, 2, 4, 8, 9};
+//     int N = 5, C = 3;
+
+//     cout << getDistance(arr, N, C) << endl;
+
+//     return 0;
+// }
