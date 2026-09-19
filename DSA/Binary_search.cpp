@@ -21,7 +21,6 @@ using namespace std;
 //     return -1;
 // }
 
-
 // int main(){
 //     vector<int> arr1 = {-1, 0, 3, 4, 5, 9, 12}; // odd array
 //     int tar1 = 5;
@@ -35,9 +34,6 @@ using namespace std;
 
 // }
 
-
-
-
 // For Recursive Binary search
 
 // int recBinarySearch(vector<int> arr, int tar, int st, int end){
@@ -50,12 +46,11 @@ using namespace std;
 //         } else if(tar < arr[mid]){
 //             return recBinarySearch(arr, tar, st, mid-1);
 //         } else {  // mid => ans
-//             return mid; 
+//             return mid;
 //         }
 //     }
 //     return -1;
 // }
-
 
 // int main(){
 //     vector<int> arr1 = {-1, 0, 3, 4, 5, 9, 12}; // odd array
@@ -72,10 +67,8 @@ using namespace std;
 
 // }
 
-
-
 // ques 33 in leetcode
-//Rotated sorted Array
+// Rotated sorted Array
 
 // class Solution {
 // public:
@@ -88,7 +81,7 @@ using namespace std;
 //                 return mid;
 //             }
 
-//             if(nums[st] <= nums[mid]){ // left sorted 
+//             if(nums[st] <= nums[mid]){ // left sorted
 //                 if(nums[st] <= target && target <= nums[mid]) {
 //                     end = mid -1;
 //                 } else {
@@ -106,9 +99,7 @@ using namespace std;
 //     }
 // };
 
-
-
-// Peak index in mountain array
+// 852 leetcode  Peak index in mountain array
 
 // class Solution {
 // public:
@@ -129,4 +120,59 @@ using namespace std;
 //         return -1;
 //     }
 // };
+
+// 540 leetcode   Single element in sorted array
+
+// class Solution
+// {
+// public:
+//     int singleNonDuplicate(vector<int> &A)
+//     {
+//         int n = A.size();
+
+//         if (n == 1)
+//             return A[0];
+
+//         int st = 0, end = n - 1;
+
+//         while (st <= end)
+//         {
+//             int mid = st + (end - st) / 2;
+
+//             if (mid == 0 && A[0] != A[1])
+//                 return A[mid];
+//             if (mid == n - 1 && A[n - 1] != A[n - 2])
+//                 return A[mid];
+
+//             if (A[mid - 1] != A[mid] && A[mid] != A[mid + 1])
+//                 return A[mid];
+
+//             if (mid % 2 == 0)
+//             { // even
+//                 if (A[mid] == A[mid - 1])
+//                 { // left
+//                     end = mid - 1;
+//                 }
+//                 else
+//                 { // right
+//                     st = mid + 1;
+//                 }
+//             }
+//             else
+//             { // odd
+//                 if (A[mid] == A[mid - 1])
+//                 { // right
+//                     st = mid + 1;
+//                 }
+//                 else
+//                 { // left
+//                     end = mid - 1;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+
+
 
