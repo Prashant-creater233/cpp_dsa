@@ -324,14 +324,81 @@ using namespace std;
 //     cout << endl;
 // }
 
+// bool comparator(pair<int, int> p1, pair<int, int> p2) {
+//     if(p1.second < p2.second) return true;
+//     if(p1.second > p2.second) return false;
+
+//     if(p1.first < p2.first) return true; // if second values equal so compare on the basis of first 
+//     else return false;
+// }
+
+// int main(){
+
+//     vector<pair<int, int>>  vec =  {{3, 1}, {2, 1}, {7, 1}, {5, 2}};
+
+//     // sort(vec.begin(), vec.end());
+//     sort(vec.begin(), vec.end(), comparator); //in ascending acc to second value
+
+//     for(auto p : vec){
+//         cout << p.first << " " << p.second << endl;  // sort in ascending on the basis of first value but if i want to arrange acc to second value so we want to make custom comparator
+//     }
+//     cout << endl;
+// }
+
+
+// Reverse Algorithm
+
+// int main(){
+
+//     vector<int>  vec =  {1, 2, 3, 4, 5};
+
+//     // reverse(vec.begin(), vec.end()); 
+//     reverse(vec.begin()+1, vec.begin()+3); 
+
+//     for(auto val : vec){
+//         cout << val << " ";
+//     }
+//     cout << endl;
+//     return 0;
+// }
+
+// Next Permutation we also covered in last file sorting
+
+// int main(){
+//     // string s = "abc";
+//     string s1 = "acb";
+//     // next_permutation(s.begin(), s.end()); 
+//     prev_permutation(s1.begin(), s1.end()); 
+
+//     cout << s1 << endl;
+
+//     // min max function
+//     cout << max(4, 5) << " " << min(6, 10) << endl;
+
+//     // swap function
+//     int a =5, b=10;
+//     swap(a, b);
+//     cout << "a = " << a << endl;
+
+//     return 0;
+// }
+
+
+
 int main(){
+    // vector<int> vec = {1, 2, 3, 4, 5};
 
-    vector<pair<int, int>>  vec =  {{3, 1}, {2, 1}, {7, 1}, {5, 2}};
+    // cout << *(max_element(vec.begin(), vec.end())) << endl;
+    // cout << *(min_element(vec.begin(), vec.end())) << endl;
+    // cout << binary_search(vec.begin(), vec.end(), 4) << endl;
 
-    sort(vec.begin(), vec.end());
+    int n = 15;
+    long int n2 = 15;
+    long long int n3 = 15;
 
-    for(auto p : vec){
-        cout << p.first << " " << p.second << endl;  // sort in ascending on the basis of first value but if i want to arrange acc to second value so we want to make custom comparator
-    }
-    cout << endl;
+    cout << __builtin_popcount(n) << endl;
+    cout << __builtin_popcountl(n2) << endl;
+    cout << __builtin_popcount(n3) << endl;
+
+    return 0;
 }
