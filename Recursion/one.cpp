@@ -38,17 +38,36 @@ using namespace std;
 
 // sum of n numbers (recursion)
 
-int sum(int n) {
-    if(n == 1) {
-        return 1;
-    } 
+// int sum(int n) {
+//     if(n == 1) {
+//         return 1;
+//     } 
 
-    return n + sum(n-1);
+//     return n + sum(n-1);
+// }
+
+// int main() {
+
+//     cout << sum(4) << endl;
+
+//     return 0;
+// }
+
+
+// Check if array is sorted
+
+bool isSorted(vector<int> arr, int n){
+    if(n == 0 || n == 1) {
+        return true;
+    }
+
+    return arr[n-1] >= arr[n-2] && isSorted(arr, n-1);
 }
 
-int main() {
+int main(){
+    vector<int> arr = {1, 2, 8, 4, 5};
 
-    cout << sum(4) << endl;
+    cout << isSorted(arr, arr.size());
 
     return 0;
 }
