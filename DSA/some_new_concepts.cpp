@@ -59,10 +59,10 @@ using namespace std;
 // int main(){
 //     int n = 3568;
 
-//     // printDigits(n);
+//     printDigits(n);
 
 //     //shortcut to print digits
-//     cout << (int)(log10(n) + 1) << endl;
+//     // cout << (int)(log10(n) + 1) << endl;
 //     return 0;
 // }
 
@@ -110,7 +110,7 @@ using namespace std;
 //     return a;
 // }
 
-// // by recursion
+// by recursion
 
 // int gcdRec(int a, int b){ // we assume a is always greater number
 //     if(b == 0) return a;
@@ -119,33 +119,33 @@ using namespace std;
 // }
 
 
-// int lcm(int a, int b){
-//     int gcd = gcdRec(a, b);
-//     return (a*b) / gcd;
-// }
+// // int lcm(int a, int b){
+// //     int gcd = gcdRec(a, b);
+// //     return (a*b) / gcd;
+// // }
 
 
 // int main(){
-//     cout << gcd(20, 28) << endl;
+//     // cout << gcd(20, 28) << endl;
 //     cout << gcdRec(6, 12) << endl; // by recursion
-//     cout << lcm(20, 28) << endl;
+//     // cout << lcm(20, 28) << endl;
 //     return 0;
 // }
 
 
 
-// raverse of number
-class Solution {
-public:
-    int reverse(int n) {
-        int revNum = 0;
-        while(n != 0) {
-            int dig = n%10;
+// // raverse of number
+// class Solution {
+// public:
+//     int reverse(int n) {
+//         int revNum = 0;
+//         while(n != 0) {
+//             int dig = n%10;
 
-            revNum = revNum * 10 + dig;
-            n = n/10;
-        }
+//             revNum = revNum * 10 + dig;
+//             n = n/10;
+//         }
 
-        return revNum;
-    }
-};
+//         return revNum;
+//     }
+// };
