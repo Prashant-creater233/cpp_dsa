@@ -11,7 +11,7 @@ using namespace std;
 //     int rows = 4;
 //     int cols = 3;
 
-//     matrix[2][1] = 18;  // we ca change the values
+//     matrix[2][1] = 18;  // we can change the values
 
 //     cout << matrix[2][1] << endl;
 //     return 0;
@@ -214,16 +214,16 @@ using namespace std;
 //     return 0;
 // }
 
-int main() {
-    vector<vector<int>> mat = {{1, 2 ,3}, {4, 5, 6, 10, 11},{7, 8, 9}};
+// int main() {
+//     vector<vector<int>> mat = {{1, 2 ,3}, {4, 5, 6, 10, 11},{7, 8, 9}};
 
-    // rows => mat.size()
-    // cols => mat[i].size()
-    for(int i=0; i<mat.size(); i++) {
-        for(int j=0; j<mat[i].size(); j++) {
-            cout << mat[i][j] << " ";
-        }
-        cout << endl;
-    }
-    return 0;
-}
+//     // rows => mat.size()
+//     // cols => mat[i].size()
+//     for(int i=0; i<mat.size(); i++) {
+//         for(int j=0; j<mat[i].size(); j++) {
+//             cout << mat[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
