@@ -5,20 +5,47 @@ using namespace std;
 
 // Raze in a Maze
 
-// void helper()
+void helper(vector<vector<int>> &mat, int r, int c, string path, vector<string> &ans){
+    int n = mat.size();
+    if(r < 0 || c < 0 || r >= n || c >= n || mat[r][c] == 0 || mat[r][c] == -1) {
+        return;
+    }   
+
+    if(r == n-1 && c == n-1) {
+        ans.push_back(path);
+        return;
+    }   
+
+    mat[r][c] = -1; // mark as visited
+
+    helper(mat, r+1, c, path + "D", ans); // down
+    helper(mat, r, c-1, path + "L", ans); // left
+    helper(mat, r, c+1, path + "R", ans); // right
+    helper(mat, r-1, c, path + "U", ans); // up
+
+    mat[r][c] = 1; // unmark as visited
+}
 
 
 
-// vector<string> findPath(vector<vector<int>> &mat){}
+vector<string> findPath(vector<vector<int>> &mat){
+    int n = mat.size();
+    vector<string> ans;
+    string path = "";
 
-// int main() {
-//     vector<vector<int>> mat = {{1, 0 , 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}};
+    helper(mat, 0, 0, path, ans);
 
-//     vector<string> ans = findPath(mat);
-//     for(string path : ans) {
-//         cout << path << endl;
-//     }
-// }
+    return ans;
+}
+
+int main() {
+    vector<vector<int>> mat = {{1, 0 , 0, 0}, {1, 1, 0, 1}, {1, 1, 0, 0}, {0, 1, 1, 1}};
+
+    vector<string> ans = findPath(mat);
+    for(string path : ans) {
+        cout << path << endl;
+    }
+}
 
 
 
@@ -119,58 +146,58 @@ using namespace std;
 
 // Count Inversions
 
-int merge(vector<int> &arr, int st, int mid, int end){
-    vector<int> temp;
-    int i = st, j = mid + 1;
-    int invCount = 0;
+// int merge(vector<int> &arr, int st, int mid, int end){
+//     vector<int> temp;
+//     int i = st, j = mid + 1;
+//     int invCount = 0;
 
-    while(i <= mid && j<=end){
-        if(arr[i] <= arr[j]){
-            temp.push_back(arr[i]);
-            i++;
-        } else {
-            temp.push_back(arr[j]);
-            invCount += (mid - i + 1);
-            j++;
-        }
-    }
+//     while(i <= mid && j<=end){
+//         if(arr[i] <= arr[j]){
+//             temp.push_back(arr[i]);
+//             i++;
+//         } else {
+//             temp.push_back(arr[j]);
+//             invCount += (mid - i + 1);
+//             j++;
+//         }
+//     }
 
-    while(i <= mid){
-        temp.push_back(arr[i]);
-        i++;
-    }
+//     while(i <= mid){
+//         temp.push_back(arr[i]);
+//         i++;
+//     }
 
-    while(j <= end){
-        temp.push_back(arr[j]);
-        j++;
-    }
+//     while(j <= end){
+//         temp.push_back(arr[j]);
+//         j++;
+//     }
 
-    for(int idx=0; idx<temp.size(); idx++){
-        arr[st + idx] = temp[idx];
-    }
+//     for(int idx=0; idx<temp.size(); idx++){
+//         arr[st + idx] = temp[idx];
+//     }
 
-    return invCount;
-}
+//     return invCount;
+// }
 
-int mergeSort(vector<int> &arr, int st, int end) {
-    if(st < end) {
-        int mid = st + (end-st)/2;
-        int leftInvCount = mergeSort(arr, st, mid);
-        int rightInvCount = mergeSort(arr, mid + 1, end);
+// int mergeSort(vector<int> &arr, int st, int end) {
+//     if(st < end) {
+//         int mid = st + (end-st)/2;
+//         int leftInvCount = mergeSort(arr, st, mid);
+//         int rightInvCount = mergeSort(arr, mid + 1, end);
 
-        int invCount = merge(arr, st, mid, end);
-        return leftInvCount + rightInvCount + invCount;
-    }
+//         int invCount = merge(arr, st, mid, end);
+//         return leftInvCount + rightInvCount + invCount;
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
-int main() {
-    // vector<int> arr {6, 3, 5, 2, 7};
-    vector<int> arr {1, 3, 5, 10, 2, 6, 8, 9};
+// int main() {
+//     // vector<int> arr {6, 3, 5, 2, 7};
+//     vector<int> arr {1, 3, 5, 10, 2, 6, 8, 9};
 
-    int ans = mergeSort(arr, 0, arr.size()-1);
-    cout << "inv count " << ans << endl;
+//     int ans = mergeSort(arr, 0, arr.size()-1);
+//     cout << "inv count " << ans << endl;
 
-    return 0;
-}
+//     return 0;
+// }
