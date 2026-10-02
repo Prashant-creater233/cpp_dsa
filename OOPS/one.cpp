@@ -11,6 +11,26 @@ public:
     string name;
     string dept;
     string subject;
+    //non-parameterized constructor
+    // Teacher() {
+    //     dept = "Computer Science";
+    // }
+
+    //parameterized constructor
+    Teacher(string name, string dept, string subject, double salary) {
+        this->name = name;
+        this->dept = dept;
+        this->subject = subject;
+        this->salary = salary;
+    }
+
+    Teacher(Teacher &orgOj){
+        cout << "Copy constructor called" << endl;
+        this->name = orgOj.name;
+        this->dept = orgOj.dept;
+        this->subject = orgOj.subject;
+        this->salary = orgOj.salary;
+    }
 
     // methods/ member funnctions
     void changeDept(string newDept)
@@ -19,29 +39,47 @@ public:
     }
 
     //setter
-    void setSalary(double s)
-    {
-        salary = s;
-    }
+    // void setSalary(double s)
+    // {
+    //     salary = s;
+    // }
 
-    //getter
-    double getSalary()
-    {
-        return salary;
+    // //getter
+    // double getSalary()
+    // {
+    //     return salary;
+    // }
+
+    void getInfo() {
+        cout << "Name: " << name << endl;
+        cout << "Dept: " << dept << endl;
+        cout << "Subject: " << subject << endl;
+        // cout << "Salary: " << getSalary() << endl;
     }
+};
+
+
+class Account {
+    private:
+        double balance;
+        string password;  // data hiding
+
+    public:
+        string accountId;
+        string userName;    
 };
 
 int main()
 {
-    Teacher t1;
-    t1.name = "Prashant";
-    t1.dept = "Computer Science";
-    t1.subject = "Data Structures";
-    t1.setSalary(50000);
+    Teacher t1("Prashant", "Computer Science", "Data Structures", 50000);  // parameterized constructor is called here
+    // Teacher t2; 
+    // t1.name = "Prashant";
+    // t1.subject = "Data Structures";
+    // t1.setSalary(50000);
+    //  t1.getInfo();
 
-    cout << "Teacher Name: " << t1.name << endl;
-    cout << "Teacher Dept: " << t1.dept << endl;
-    cout << "Teacher Subject: " << t1.subject << endl;
-    cout << "Teacher Salary: " << t1.getSalary() << endl;
+    Teacher t2(t1);  // copy constructor is called here
+    t2.getInfo();
+
     return 0;
 }
