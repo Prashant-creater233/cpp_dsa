@@ -386,3 +386,38 @@ using namespace std;
 
 // Operator overloading (compile-time polymorphism)
 
+
+
+// Run -time polymorphism (dynamic polymorphism) in C++ is achieved through the use of virtual functions. A virtual function is a member function in the base class that you expect to override in derived classes. When you use a virtual function, you tell the compiler to support late binding on this function.
+// function Overriding (run-time polymorphism)
+
+class Parent {
+    public:
+        void getInfo() {  
+            cout << "Info of Parent class" << endl;
+        }
+
+        virtual void hello() {
+            cout << "Display of Parent class" << endl;
+        }
+};
+
+class Child : public Parent {
+    public:
+        void getInfo() {  
+            cout << "Info of Child class" << endl;
+        }
+
+};
+
+int main() {
+    Parent p1;
+    Child c1;
+
+    p1.getInfo();  // calls Parent's getInfo()
+    c1.getInfo();  // calls Child's getInfo()
+
+    p1.hello();  // calls Parent's hello()
+
+    return 0;
+}
