@@ -302,32 +302,87 @@ using namespace std;
 
 
 // Hybrid inheritance
-class Person {
-    public:
-        string name;
-        int age;
-};
+// class Person {
+//     public:
+//         string name;
+//         int age;
+// };
 
-class Student : public Person {
-    public:
-        int rollNo;
-};
+// class Student : public Person {
+//     public:
+//         int rollNo;
+// };
 
-class Teacher : public Person {
-    public:
-        string subject;
-        double salary;
-};
+// class Teacher : public Person {
+//     public:
+//         string subject;
+//         double salary;
+// };
 
-class TeachingAssistant : public Student, public Teacher {
+// class TeachingAssistant : public Student, public Teacher {
     
-};
+// };
 
-class GraduateStudent : public Student {
-    public:
-        string researchArea;
-};
+// class GraduateStudent : public Student {
+//     public:
+//         string researchArea;
+// };
 
-class GraduateTeachingAssistant : public GraduateStudent, public Teacher {
+// class GraduateTeachingAssistant : public GraduateStudent, public Teacher {
     
-};
+// };
+
+
+
+// Polymorphism in C++: It is the ability of a function, object or operator to take on multiple forms. There are two types of polymorphism in C++: compile-time polymorphism (also known as static polymorphism) and run-time polymorphism (also known as dynamic polymorphism).
+
+// example of constructor overloading (compile-time polymorphism)
+// class Student {
+//     public:
+//         string name;
+
+//         Student() {
+//             cout << "non-parameterized constructor called" << endl;
+//         }
+        
+//         Student(string name) {
+//             this->name = name;
+//             cout << "Parameterized constructor called for " << name << endl;
+//         }
+//     };
+    
+//     int main() {
+        
+//         Student s1;  // non-parameterized constructor is called here
+//         Student s2("Prashant");  // parameterized constructor is called here
+//     }
+
+
+// example of function overloading (compile-time polymorphism)
+
+// class Print {
+    
+//     public:
+//         void display(int x) {
+//             cout << "Integer: " << x << endl;
+//         }
+
+//         void display(char ch) {
+//             cout << "Character: " << ch << endl;
+//         }
+
+//         void display(string s) {
+//             cout << "String: " << s << endl;
+//         }  
+// };
+
+// int main() {
+//     Print p1;
+//     p1.display(10);  // calls display(int)
+//     p1.display('A');  // calls display(char)
+//     p1.display("Hello");  // calls display(string)
+// }
+
+
+// Operator overloading (compile-time polymorphism)
+
