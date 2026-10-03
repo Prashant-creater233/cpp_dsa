@@ -391,33 +391,90 @@ using namespace std;
 // Run -time polymorphism (dynamic polymorphism) in C++ is achieved through the use of virtual functions. A virtual function is a member function in the base class that you expect to override in derived classes. When you use a virtual function, you tell the compiler to support late binding on this function.
 // function Overriding (run-time polymorphism)
 
-class Parent {
+// class Parent {
+//     public:
+//         void getInfo() {  
+//             cout << "Info of Parent class" << endl;
+//         }
+
+//         virtual void hello() {
+//             cout << "Display of Parent class" << endl;
+//         }
+// };
+
+// class Child : public Parent {
+//     public:
+//         void getInfo() {  
+//             cout << "Info of Child class" << endl;
+//         }
+
+// };
+
+// int main() {
+//     Parent p1;
+//     Child c1;
+
+//     p1.getInfo();  // calls Parent's getInfo()
+//     c1.getInfo();  // calls Child's getInfo()
+
+//     p1.hello();  // calls Parent's hello()
+
+//     return 0;
+// }
+
+
+// void fun() {
+//     static int x = 0;  // static variable is initialized only once and retains its value between function calls
+//     cout << "x : " << x << endl;
+//     x++;
+// }
+
+// class A {
+//     public:
+//         int x;  // non-static variable is unique to each object of the class
+//         void incX() {
+//             x = x+1;
+//         }
+// };
+
+// int main() {
+//     // fun();
+//     // fun();
+//     // fun();
+
+//     A obj1;
+//     A obj2;
+//     obj1.x = 0;  // static variable is initialized only once and retains its value between function calls    
+//     cout << obj1.x << endl;  // prints 0
+//     obj1.incX();
+//     cout << obj1.x << endl;  // prints 1 
+//     return 0;
+// }
+
+class ABC {
     public:
-        void getInfo() {  
-            cout << "Info of Parent class" << endl;
+        ABC() {
+            cout << "Constructor called" << endl;
         }
 
-        virtual void hello() {
-            cout << "Display of Parent class" << endl;
+        ~ABC() {
+            cout << "Destructor called" << endl;
         }
-};
-
-class Child : public Parent {
-    public:
-        void getInfo() {  
-            cout << "Info of Child class" << endl;
-        }
-
 };
 
 int main() {
-    Parent p1;
-    Child c1;
+    // if(true) {
+    //     ABC obj; // constructor is called here
+    // }
 
-    p1.getInfo();  // calls Parent's getInfo()
-    c1.getInfo();  // calls Child's getInfo()
+    // cout << "end of main function" << endl; // destructor is called here when obj goes out of scope
+    // return 0;
 
-    p1.hello();  // calls Parent's hello()
+    // but if we use statuc keyword then constructor is called only once and destructor is called only once when the program ends
+    if(true) {
+        static ABC obj; // constructor is called here
+    }
 
+    cout << "end of main function" << endl; // destructor is called here when obj goes out of scope
     return 0;
 }
