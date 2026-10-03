@@ -24,7 +24,7 @@ public:
         tail = NULL;
     }  
     
-    void push_front(int val) {
+    void push_front(int val) { // O(1)
         Node* newNode = new Node(val); // dynamically allocate memory for a new node
         if (head == NULL) {
             head = newNode;
@@ -36,7 +36,72 @@ public:
         }
     }
 
-    void printLL() {
+    void push_back(int val) { // O(1)
+        Node* newNode = new Node(val); // dynamically allocate memory for a new node
+        if(head == NULL) {
+            head = newNode;
+            tail = newNode;
+            return;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void pop_front() { // O(1)
+        if(head == NULL) {
+            cout << "LL is empty\n";
+            return;
+        }
+
+        Node* temp = head;
+        head = head->next;
+        temp->next = NULL;
+        delete temp;
+    }
+
+    void pop_back() { // O(n)
+        if(head == NULL) {
+            cout << "LL is empty\n";
+            return;
+        }
+
+        Node* temp = head;
+        while(temp->next != tail) {
+            temp = temp->next;
+        }
+
+        temp->next = NULL;
+        delete tail;
+        tail = temp;
+    }
+
+    void insert(int val, int pos) { // O(n)
+        if(pos < 0) {
+            cout << "invalid pos\n";
+            return;
+        }
+
+        if(pos == 0) {
+            push_front(val);
+            return;
+        }
+
+        Node* temp = head;
+        for(int i=0; i<pos-1; i++) {
+            if(temp == NULL) {
+                cout << "Invalid pas\n";
+                return;
+            }
+            temp = temp->next;
+        }
+
+        Node* newNode = new Node(val);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
+    void printLL() { // O(n)
         Node* temp = head;
         while (temp != NULL) {
             cout << temp->data << "->";
@@ -44,15 +109,56 @@ public:
         }
         cout << "NULL" << endl;
     }
+
+
+    int search(int key) { // O(n)
+        Node* temp = head;
+        int idx = 0;
+
+        while(temp != NULL) {
+            if(temp->data == key) {
+                return idx;
+            }
+
+            temp = temp->next;
+            idx++;
+        }
+
+        return -1;
+    }
 };  
+
+// int main() {
+//     List l1;
+//     l1.push_front(1);
+//     l1.push_front(2);
+//     l1.push_front(3);
+
+//     l1.push_back(4);
+
+//     l1.pop_front();
+
+//     l1.printLL();
+
+//     l1.pop_back();
+
+//     l1.printLL();
+
+//     return 0;
+// }
 
 int main() {
     List l1;
-    l1.push_front(1);
-    l1.push_front(2);
+
     l1.push_front(3);
+    l1.push_front(2);
+    l1.push_front(1);
+
+    l1.insert(4,1);
 
     l1.printLL();
+
+    cout << l1.search(2) << endl;
 
     return 0;
 }
