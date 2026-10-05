@@ -1,5 +1,6 @@
 #include <iostream>
 #include <climits>
+#include <vector>
 using namespace std;
 
 // int main(){
@@ -209,27 +210,56 @@ using namespace std;
 
 // 3 WAP to print all the unique values in an array..
 
-int main(){
-    int arr[]= {1,2,5,3,1,2,3,4,6};
-    int size = 9;
+// int main(){
+//     int arr[]= {1,2,5,3,1,2,3,4,6};
+//     int size = 9;
 
-    for(int i=0; i<size; i++){
-        int count=0;
+//     for(int i=0; i<size; i++){
+//         int count=0;
 
-        for(int j=0; j<size; j++){
-            if(arr[i] == arr[j]){
-                count++;
-            }
-        }
+//         for(int j=0; j<size; j++){
+//             if(arr[i] == arr[j]){
+//                 count++;
+//             }
+//         }
 
-        if(count == 1){
-            cout << arr[i] << " ";
-        }
-    }
+//         if(count == 1){
+//             cout << arr[i] << " ";
+//         }
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 //WAF to print intersection of 2 arrays
 
+
+
+// pairsum if target given
+
+int main() {
+    vector<int> arr= {2, 7, 11, 15};
+    int target = 13;
+    int n = arr.size();
+    int st =0, end = n-1;
+    vector<int> ans;
+
+    while(st < end) {
+        int pairSum = arr[st] + arr[end];
+
+        if(pairSum > target) {
+            end--;
+        } else if (pairSum < target){
+            st++;
+        } else {
+            ans.push_back(st);
+            ans.push_back(end);
+            break;
+        }
+    }
+
+    for(int val : ans) {
+        cout << val << " ";
+    }
+}
