@@ -1,32 +1,36 @@
-class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* temp = head;
-        int count = 0;
+#include <iostream>
+#include <vector>
+using namespace std;
 
-        //check if nodes exixt
-        while(count < k) {
-            if(temp == NULL) {
-                return head;
-            }
-            temp = temp->next;
-            count++;
-        }
+// class Solution {
+// public:
+//     ListNode* reverseKGroup(ListNode* head, int k) {
+//         ListNode* temp = head;
+//         int count = 0;
 
-        //recursively call for rest of LL
-        ListNode* prevNode = reverseKGroup(temp, k);
+//         //check if nodes exixt
+//         while(count < k) {
+//             if(temp == NULL) {
+//                 return head;
+//             }
+//             temp = temp->next;
+//             count++;
+//         }
 
-        //reverse current group
-        temp = head; count = 0;
-        while(count < k) {
-            ListNode* next = temp->next;
-            temp->next = prevNode;
-            prevNode = temp;
-            temp = next;
+//         //recursively call for rest of LL
+//         ListNode* prevNode = reverseKGroup(temp, k);
 
-            count++;
-        }
+//         //reverse current group
+//         temp = head; count = 0;
+//         while(count < k) {
+//             ListNode* next = temp->next;
+//             temp->next = prevNode;
+//             prevNode = temp;
+//             temp = next;
 
-        return prevNode;
-    }
-};
+//             count++;
+//         }
+
+//         return prevNode;
+//     }
+// };
