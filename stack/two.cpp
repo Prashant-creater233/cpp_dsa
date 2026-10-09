@@ -102,33 +102,40 @@ using namespace std;
 // };
 
 
-// count primes
-class Solution {
-public:
-    int countPrimes(int n) {
-        if (n <= 2) return 0;
 
-        vector<bool> isPrime(n, true);
+// Previous Smaller element
 
-        isPrime[0] = false;
-        isPrime[1] = false;
+vector<int> prevSmallerElement(vector<int> &arr) {
+    vector<int> ans(arr.size(), 0);
+    stack<int> s;
 
-        for (int i = 2; i * i < n; i++) {
-            if (isPrime[i]) {
-                for (int j = i * i; j < n; j += i) {
-                    isPrime[j] = false;
-                }
-            }
+    for(int i=0; i<arr.size(); i++) {
+        while(s.size() > 0 && s.top() >= arr[i]) {
+            s.pop();
         }
 
-        int count = 0;
-
-        for (int i = 2; i < n; i++) {
-            if (isPrime[i]) {
-                count++;
-            }
+        if(s.empty()) {
+            ans[i] = -1;
+        } else {
+            ans[i] = s.top();
         }
 
-        return count;
+        s.push(arr[i]);
     }
-};
+
+    return ans;
+}
+
+
+int main() {
+    vector<int> arr = {3, 1, 0, 8, 6};
+
+    vector<int> ans = prevSmallerElement(arr);
+
+    for(int val : ans) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
