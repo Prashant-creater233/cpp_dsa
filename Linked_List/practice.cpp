@@ -425,30 +425,60 @@ using namespace std;
 
 // Minimum repeat to make  a substring
 
-int main() {
-    string s1 = "abac"; 
-    string s2 = "cabaca";
+// int main() {
+//     string s1 = "abac"; 
+//     string s2 = "cabaca";
 
-    string temp = "";
-    int count = 0;
+//     string temp = "";
+//     int count = 0;
 
-    while(temp.length() < s2.length()) {
-        temp += s1;
-        count++;
-    }
+//     while(temp.length() < s2.length()) {
+//         temp += s1;
+//         count++;
+//     }
 
-    //current string check
-    if(temp.find(s2) != string::npos) { // is line ka matlab ha ki agar temp ka andar s2 string mil gyi ha
-        cout << count;
-    }
+//     //current string check
+//     if(temp.find(s2) != string::npos) { // is line ka matlab ha ki agar temp ka andar s2 string mil gyi ha
+//         cout << count;
+//     }
 
-    //one extra repetation
-    temp += s1;
-    count++;
+//     //one extra repetation
+//     temp += s1;
+//     count++;
         
-    if(temp.find(s2) != string::npos) {  
-        cout << count;
+//     if(temp.find(s2) != string::npos) {  
+//         cout << count;
+//     }
+
+//     return -1;
+// }
+
+
+// Longest Prefix Suffix
+
+int main() {
+    string s = "abcdeabcdab";
+    int n = s.length();
+        
+    int prefix = 0;
+    int suffix = 1;
+    int pos = 1;
+    int count = 0;
+        
+    while(prefix < n && suffix < n) {
+        if(s[prefix] == s[suffix]) {
+            prefix++;
+            suffix++;
+            count++;
+        } else {
+            prefix = 0;
+            pos++;
+            suffix = pos;
+            count = 0;
+        }
     }
 
-    return -1;
+    cout << count << endl;
+
+    return 0;
 }
