@@ -182,22 +182,60 @@ using namespace std;
 
 // container with most water;
 
-int main() {
-    vector<int> height = {1,8,6,2,5,4,8,3,7};
-    int n = height.size();
-    int lp=0, rp=n-1;
-    int maxWater = 1;
+// int main() {
+//     vector<int> height = {1,8,6,2,5,4,8,3,7};
+//     int n = height.size();
+//     int lp=0, rp=n-1;
+//     int maxWater = 1;
 
-    while(lp < rp) {
-        int w = rp - lp;
-        int ht = min(height[lp], height[rp]);
+//     while(lp < rp) {
+//         int w = rp - lp;
+//         int ht = min(height[lp], height[rp]);
 
-        int currWater = w * ht;
+//         int currWater = w * ht;
 
-        maxWater = max(currWater, maxWater);
+//         maxWater = max(currWater, maxWater);
 
-        height[lp] < height[rp] ? lp++ : rp--;
+//         height[lp] < height[rp] ? lp++ : rp--;
+//     }
+
+//     cout << maxWater << endl;
+// }
+
+
+// valid palindrome
+
+bool isalnum(char ch) {
+    if((tolower(ch) >= 'a' && tolower(ch) <='z') || (ch >= '0' && ch <= '9')) {
+        return true;
     }
 
-    cout << maxWater << endl;
+    return false;
+}
+
+bool isPalindrome(string s) {
+    int i=0, j=s.size()-1;
+
+    while(i < j) {
+        if(!isalnum(s[i])) {
+            i++; continue;
+        }
+
+        if(!isalnum(s[j])) {
+            j--; continue;
+        }
+
+        if(tolower(s[i]) != tolower(s[j])) {
+            return false;
+        }
+        i++; j--;
+    }
+    return true;
+}
+
+int main() {
+    string s = "A man, a plan, a canal: Panama";
+    cout << isPalindrome(s);
+
+    return 0;
 }
