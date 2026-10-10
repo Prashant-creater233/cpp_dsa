@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 // class Solution {
@@ -243,25 +244,44 @@ using namespace std;
 
 //left to right array by k
 
+// int main() {
+//     vector<int> arr = {1,2,3,4,5,6,7};
+//     int n = arr.size();
+//     int k = 3;
+//     k = k % n; // if k is greater than n
+//     vector<int> ans;
+
+//     for(int i=n-k; i<n; i++) {
+//         ans.push_back(arr[i]);
+//     }
+
+//     for(int i=0; i<n-k; i++) {
+//         ans.push_back(arr[i]);
+//     }
+
+//     for(int val : ans) {
+//         cout << val << " ";
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+//  roted array by secont method 
+
 int main() {
     vector<int> arr = {1,2,3,4,5,6,7};
     int n = arr.size();
-    int k = 3;
-    vector<int> ans;
+    int k = 16;
+    k = k % n; // if k is greater than n
 
-    for(int i=n-k; i<n; i++) {
-        ans.push_back(arr[i]);
-    }
+    reverse(arr.begin(), arr.end());
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
 
-    for(int i=0; i<n-k; i++) {
-        ans.push_back(arr[i]);
-    }
-
-    for(int val : ans) {
+    for(int val : arr) {
         cout << val << " ";
     }
     cout << endl;
-
     return 0;
 }
-
