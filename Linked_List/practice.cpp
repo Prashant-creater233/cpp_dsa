@@ -205,37 +205,63 @@ using namespace std;
 
 // valid palindrome
 
-bool isalnum(char ch) {
-    if((tolower(ch) >= 'a' && tolower(ch) <='z') || (ch >= '0' && ch <= '9')) {
-        return true;
-    }
+// bool isalnum(char ch) {
+//     if((tolower(ch) >= 'a' && tolower(ch) <='z') || (ch >= '0' && ch <= '9')) {
+//         return true;
+//     }
 
-    return false;
-}
+//     return false;
+// }
 
-bool isPalindrome(string s) {
-    int i=0, j=s.size()-1;
+// bool isPalindrome(string s) {
+//     int i=0, j=s.size()-1;
 
-    while(i < j) {
-        if(!isalnum(s[i])) {
-            i++; continue;
-        }
+//     while(i < j) {
+//         if(!isalnum(s[i])) {
+//             i++; continue;
+//         }
 
-        if(!isalnum(s[j])) {
-            j--; continue;
-        }
+//         if(!isalnum(s[j])) {
+//             j--; continue;
+//         }
 
-        if(tolower(s[i]) != tolower(s[j])) {
-            return false;
-        }
-        i++; j--;
-    }
-    return true;
-}
+//         if(tolower(s[i]) != tolower(s[j])) {
+//             return false;
+//         }
+//         i++; j--;
+//     }
+//     return true;
+// }
+
+// int main() {
+//     string s = "A man, a plan, a canal: Panama";
+//     cout << isPalindrome(s);
+
+//     return 0;
+// }
+
+
+//left to right array by k
 
 int main() {
-    string s = "A man, a plan, a canal: Panama";
-    cout << isPalindrome(s);
+    vector<int> arr = {1,2,3,4,5,6,7};
+    int n = arr.size();
+    int k = 3;
+    vector<int> ans;
+
+    for(int i=n-k; i<n; i++) {
+        ans.push_back(arr[i]);
+    }
+
+    for(int i=0; i<n-k; i++) {
+        ans.push_back(arr[i]);
+    }
+
+    for(int val : ans) {
+        cout << val << " ";
+    }
+    cout << endl;
 
     return 0;
 }
+
