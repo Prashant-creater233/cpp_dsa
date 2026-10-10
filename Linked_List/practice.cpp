@@ -339,36 +339,62 @@ using namespace std;
 
 // serach in rotated sorted array
 
-int main() {
-    vector<int> arr = {4,5,6,7,0,1,2};
-    int target = 0;
-    int n = arr.size();
-    int ans = -1;
+// int main() {
+//     vector<int> arr = {4,5,6,7,0,1,2};
+//     int target = 0;
+//     int n = arr.size();
+//     int ans = -1;
 
-    int st =0, end=n-1;
-    while(st <= end) {
-        int mid = st + (end-st)/2;
-        if(target == arr[mid]) {
-            ans = mid;
-            break;
-        } 
+//     int st =0, end=n-1;
+//     while(st <= end) {
+//         int mid = st + (end-st)/2;
+//         if(target == arr[mid]) {
+//             ans = mid;
+//             break;
+//         } 
 
-        if(arr[st] <= arr[mid]) {
-            if(target >= arr[st] && target <= arr[mid]) {
-                end = mid-1;
-            } else {
-                st = mid +1;
-            }
-        } else {
-            if(target >= arr[mid] && target <= arr[end]) {
-                st = mid+1;
-            } else {
-                end = mid-1;
+//         if(arr[st] <= arr[mid]) {
+//             if(target >= arr[st] && target <= arr[mid]) {
+//                 end = mid-1;
+//             } else {
+//                 st = mid +1;
+//             }
+//         } else {
+//             if(target >= arr[mid] && target <= arr[end]) {
+//                 st = mid+1;
+//             } else {
+//                 end = mid-1;
+//             }
+//         }
+//     }
+
+//     cout << ans;
+
+//     return 0;
+// }
+
+
+// Valid Anagram
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) { //O(n)
+        if(s.size() != t.size()) {
+            return false;
+        }
+        
+        int freq[26] = {0};
+        for(int i=0; i<s.size(); i++) {
+            freq[s[i] - 'a']++;
+            freq[t[i] - 'a']--;
+        }
+
+        for(int i=0; i<26; i++) {
+            if(freq[i] != 0) {
+                return false;
             }
         }
+
+        return true;
     }
-
-    cout << ans;
-
-    return 0;
-}
+};
