@@ -376,25 +376,48 @@ using namespace std;
 
 // Valid Anagram
 
-class Solution {
-public:
-    bool isAnagram(string s, string t) { //O(n)
-        if(s.size() != t.size()) {
-            return false;
-        }
+bool isAnagram(string s, string t) { //O(nlog(n)) because we use sort
+    if(s.size() != t.size()) {
+        return false;
+    }
         
-        int freq[26] = {0};
-        for(int i=0; i<s.size(); i++) {
-            freq[s[i] - 'a']++;
-            freq[t[i] - 'a']--;
-        }
+    sort(s.begin(), s.end());
+    sort(t.begin(), t.end());
 
-        for(int i=0; i<26; i++) {
-            if(freq[i] != 0) {
-                return false;
-            }
-        }
-
+    if(s == t) {
         return true;
     }
-};
+
+    return false;
+}
+
+// 2nd approach for upper ques (most optimized than upper)
+
+// bool isAnagram(string s, string t) { //O(n)
+//     if(s.size() != t.size()) {
+//         return false;
+//     }
+        
+//     int freq[26] = {0};
+//     for(int i=0; i<s.size(); i++) {
+//         freq[s[i] - 'a']++;
+//         freq[t[i] - 'a']--;
+//     }
+
+//     for(int i=0; i<26; i++) {
+//         if(freq[i] != 0) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// }
+
+int main() {
+    string s = "anagram";
+    string t = "nagaram";
+
+    cout << isAnagram(s, t);
+
+    return 0;
+}
