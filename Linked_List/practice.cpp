@@ -376,48 +376,79 @@ using namespace std;
 
 // Valid Anagram
 
-bool isAnagram(string s, string t) { //O(nlog(n)) because we use sort
-    if(s.size() != t.size()) {
-        return false;
-    }
-        
-    sort(s.begin(), s.end());
-    sort(t.begin(), t.end());
-
-    if(s == t) {
-        return true;
-    }
-
-    return false;
-}
-
-// 2nd approach for upper ques (most optimized than upper)
-
-// bool isAnagram(string s, string t) { //O(n)
+// bool isAnagram(string s, string t) { //O(nlog(n)) because we use sort
 //     if(s.size() != t.size()) {
 //         return false;
 //     }
         
-//     int freq[26] = {0};
-//     for(int i=0; i<s.size(); i++) {
-//         freq[s[i] - 'a']++;
-//         freq[t[i] - 'a']--;
+//     sort(s.begin(), s.end());
+//     sort(t.begin(), t.end());
+
+//     if(s == t) {
+//         return true;
 //     }
 
-//     for(int i=0; i<26; i++) {
-//         if(freq[i] != 0) {
-//             return false;
-//         }
-//     }
-
-//     return true;
+//     return false;
 // }
 
+// // 2nd approach for upper ques (most optimized than upper)
+
+// // bool isAnagram(string s, string t) { //O(n)
+// //     if(s.size() != t.size()) {
+// //         return false;
+// //     }
+        
+// //     int freq[26] = {0};
+// //     for(int i=0; i<s.size(); i++) {
+// //         freq[s[i] - 'a']++;
+// //         freq[t[i] - 'a']--;
+// //     }
+
+// //     for(int i=0; i<26; i++) {
+// //         if(freq[i] != 0) {
+// //             return false;
+// //         }
+// //     }
+
+// //     return true;
+// // }
+
+// int main() {
+//     string s = "anagram";
+//     string t = "nagaram";
+
+//     cout << isAnagram(s, t);
+
+//     return 0;
+// }
+
+
+// Minimum repeat to make  a substring
+
 int main() {
-    string s = "anagram";
-    string t = "nagaram";
+    string s1 = "abac"; 
+    string s2 = "cabaca";
 
-    cout << isAnagram(s, t);
+    string temp = "";
+    int count = 0;
 
-    return 0;
+    while(temp.length() < s2.length()) {
+        temp += s1;
+        count++;
+    }
+
+    //current string check
+    if(temp.find(s2) != string::npos) { // is line ka matlab ha ki agar temp ka andar s2 string mil gyi ha
+        cout << count;
+    }
+
+    //one extra repetation
+    temp += s1;
+    count++;
+        
+    if(temp.find(s2) != string::npos) {  
+        cout << count;
+    }
+
+    return -1;
 }
