@@ -127,3 +127,77 @@ using namespace std;
 //         return count;
 //     }
 // };
+
+
+// maximum subarrray sum (kadane;s algorithm)
+
+// int main() {
+//     vector<int> arr = {-2,1,-3,4,-1,2,1,-5,4};
+//     int n = arr.size();
+
+//     int currSum = 0;
+//     int maxSubSum = INT_MIN;
+
+//     for(int i=0; i<n; i++) {
+//         currSum += arr[i];
+//         maxSubSum = max(currSum, maxSubSum);
+
+//         if(currSum < 0) {
+//             currSum = 0;
+//         }
+//     }
+
+//     cout << maxSubSum << endl;
+// }
+
+
+// maximum subarray  product
+
+// int main() {
+//     vector<int> arr = {-2,0, -1};
+//     int n = arr.size();
+//     int currProd1 = 1, maxSubProd = INT_MIN;
+
+//     for(int i=0; i<n; i++) {
+//         currProd1 *= arr[i];
+//         maxSubProd = max(currProd1, maxSubProd);
+
+//         if(currProd1 == 0) {
+//             currProd1 = 1;
+//         }
+//     }
+
+//     int currProd2 = 1;
+//     for(int i=n-1; i>=0; i--) {
+//         currProd2 *= arr[i];
+//         maxSubProd = max(currProd2, maxSubProd);
+
+//         if(currProd2 == 0) {
+//             currProd2 = 1;
+//         }
+//     }
+//     cout << maxSubProd << endl;
+// }
+
+
+// container with most water;
+
+int main() {
+    vector<int> height = {1,8,6,2,5,4,8,3,7};
+    int n = height.size();
+    int lp=0, rp=n-1;
+    int maxWater = 1;
+
+    while(lp < rp) {
+        int w = rp - lp;
+        int ht = min(height[lp], height[rp]);
+
+        int currWater = w * ht;
+
+        maxWater = max(currWater, maxWater);
+
+        height[lp] < height[rp] ? lp++ : rp--;
+    }
+
+    cout << maxWater << endl;
+}
