@@ -456,29 +456,69 @@ using namespace std;
 
 // Longest Prefix Suffix
 
-int main() {
-    string s = "abcdeabcdab";
-    int n = s.length();
+// int main() {
+//     string s = "abcdeabcdab";
+//     int n = s.length();
         
-    int prefix = 0;
-    int suffix = 1;
-    int pos = 1;
-    int count = 0;
+//     int prefix = 0;
+//     int suffix = 1;
+//     int pos = 1;
+//     int count = 0;
         
-    while(prefix < n && suffix < n) {
-        if(s[prefix] == s[suffix]) {
-            prefix++;
-            suffix++;
-            count++;
-        } else {
-            prefix = 0;
-            pos++;
-            suffix = pos;
-            count = 0;
-        }
+//     while(prefix < n && suffix < n) {
+//         if(s[prefix] == s[suffix]) {
+//             prefix++;
+//             suffix++;
+//             count++;
+//         } else {
+//             prefix = 0;
+//             pos++;
+//             suffix = pos;
+//             count = 0;
+//         }
+//     }
+
+//     cout << count << endl;
+
+//     return 0;
+// }
+
+
+
+// Tower of Hanoi
+
+#include <iostream>
+using namespace std;
+
+void towerOfHanoi(int n, char source, char helper, char destination)
+{
+    // Base case
+    if (n == 1)
+    {
+        cout << "Move disk 1 from " << source
+             << " to " << destination << endl;
+        return;
     }
 
-    cout << count << endl;
+    // Step 1: n-1 disks Source -> Helper
+    towerOfHanoi(n - 1, source, destination, helper);
+
+    // Step 2: Largest disk Source -> Destination
+    cout << "Move disk " << n << " from "
+         << source << " to " << destination << endl;
+
+    // Step 3: n-1 disks Helper -> Destination
+    towerOfHanoi(n - 1, helper, source, destination);
+}
+
+int main()
+{
+    int n;
+
+    cout << "Enter number of disks: ";
+    cin >> n;
+
+    towerOfHanoi(n, 'A', 'B', 'C');
 
     return 0;
 }
