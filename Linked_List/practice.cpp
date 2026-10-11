@@ -524,16 +524,37 @@ using namespace std;
 
 // count frequency of a character
 
-int main() {
-    int count = 0;
-    string s = "banana";
-    char ch = 'a';
+// int main() {
+//     int count = 0;
+//     string s = "banana";
+//     char ch = 'a';
 
-    for(int i=0; i<s.length(); i++) {
-        if(s[i] == ch) {
-            count++;
-        }
-    }
+//     for(int i=0; i<s.length(); i++) {
+//         if(s[i] == ch) {
+//             count++;
+//         }
+//     }
 
-    cout << count << endl;
-}
+//     cout << count << endl;
+// }
+
+
+// count number of word in a string
+
+
+// int main() {
+//     // string s = "abc def";
+//     string s = "a\nyo\t";
+//     int n = s.length();
+//     int count = 0;
+
+//     for(int i = 0; i < n; i++) {
+//         if(s[i] == ' ' || s[i] == '\n' || s[i] == '\t') {
+//             count++;
+//         }
+//     }
+
+//     cout << count + 1;
+
+//     return 0;
+// }
