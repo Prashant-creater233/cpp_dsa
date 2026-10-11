@@ -487,38 +487,53 @@ using namespace std;
 
 // Tower of Hanoi
 
-#include <iostream>
-using namespace std;
 
-void towerOfHanoi(int n, char source, char helper, char destination)
-{
-    // Base case
-    if (n == 1)
-    {
-        cout << "Move disk 1 from " << source
-             << " to " << destination << endl;
-        return;
+// void towerOfHanoi(int n, char source, char helper, char destination)
+// {
+//     // Base case
+//     if (n == 1)
+//     {
+//         cout << "Move disk 1 from " << source
+//              << " to " << destination << endl;
+//         return;
+//     }
+
+//     // Step 1: n-1 disks Source -> Helper
+//     towerOfHanoi(n - 1, source, destination, helper);
+
+//     // Step 2: Largest disk Source -> Destination
+//     cout << "Move disk " << n << " from "
+//          << source << " to " << destination << endl;
+
+//     // Step 3: n-1 disks Helper -> Destination
+//     towerOfHanoi(n - 1, helper, source, destination);
+// }
+
+// int main()
+// {
+//     int n;
+
+//     cout << "Enter number of disks: ";
+//     cin >> n;
+
+//     towerOfHanoi(n, 'A', 'B', 'C');
+
+//     return 0;
+// }
+
+
+// count frequency of a character
+
+int main() {
+    int count = 0;
+    string s = "banana";
+    char ch = 'a';
+
+    for(int i=0; i<s.length(); i++) {
+        if(s[i] == ch) {
+            count++;
+        }
     }
 
-    // Step 1: n-1 disks Source -> Helper
-    towerOfHanoi(n - 1, source, destination, helper);
-
-    // Step 2: Largest disk Source -> Destination
-    cout << "Move disk " << n << " from "
-         << source << " to " << destination << endl;
-
-    // Step 3: n-1 disks Helper -> Destination
-    towerOfHanoi(n - 1, helper, source, destination);
-}
-
-int main()
-{
-    int n;
-
-    cout << "Enter number of disks: ";
-    cin >> n;
-
-    towerOfHanoi(n, 'A', 'B', 'C');
-
-    return 0;
+    cout << count << endl;
 }
