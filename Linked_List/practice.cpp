@@ -131,7 +131,7 @@ using namespace std;
 // };
 
 
-// maximum subarrray sum (kadane;s algorithm)
+// maximum subarrray sum (kadane's algorithm)
 
 // int main() {
 //     vector<int> arr = {-2,1,-3,4,-1,2,1,-5,4};
@@ -188,7 +188,7 @@ using namespace std;
 //     vector<int> height = {1,8,6,2,5,4,8,3,7};
 //     int n = height.size();
 //     int lp=0, rp=n-1;
-//     int maxWater = 1;
+//     int maxWater = INT_MIN;
 
 //     while(lp < rp) {
 //         int w = rp - lp;
@@ -424,7 +424,7 @@ using namespace std;
 // }
 
 
-// Minimum repeat to make  a substring
+// Minimum repeat to make a substring
 
 // int main() {
 //     string s1 = "abac"; 
