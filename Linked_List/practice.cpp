@@ -628,3 +628,23 @@ public:
         return ans;
     }
 };
+
+
+// lower bound 
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> arr = {1, 2, 4, 4, 5, 7};
+
+    int target = 4;
+
+    int index = lower_bound(arr.begin(), arr.end(), target) - arr.begin();
+
+    cout << index;
+
+    return 0;
+}
