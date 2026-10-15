@@ -46,7 +46,7 @@ public:
                 s.pop();
             }
 
-            right[i] = s.empty() ? n : s.top();
+            right[i] = s.empty() ? n : s.top(); // edge case not -1 on rigth take n because formula not correct when 
             s.push(i);
         }
 
