@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <deque>
 using namespace std;
 
 
@@ -79,18 +80,37 @@ using namespace std;
 
 // using STL direct implementation
 
+// int main() {
+//     queue<int> q;
+//     q.push(1);
+//     q.push(2);
+//     q.push(3);
+
+//     while(!q.empty()) {
+//         cout << q.front() << " ";
+//         q.pop();
+//     }
+
+//     cout << endl;
+
+//     return 0;
+// }
+
+
+
+// Deque  ( Double Ended Queue )
+
 int main() {
-    queue<int> q;
-    q.push(1);
-    q.push(2);
-    q.push(3);
+    deque<int> dq;
+    dq.push_back(1);
+    dq.push_back(2);
+    dq.push_back(3);
 
-    while(!q.empty()) {
-        cout << q.front() << " ";
-        q.pop();
-    }
-
-    cout << endl;
+    dq.push_front(4); // 4,1,2,3
+    cout << dq.front() << " " << dq.back() << endl;
+    
+    dq.pop_back(); // 4,1,2
+    cout << dq.front() << " " << dq.back() << endl;
 
     return 0;
 }
