@@ -108,7 +108,7 @@ int main() {
 
     dq.push_front(4); // 4,1,2,3
     cout << dq.front() << " " << dq.back() << endl;
-    
+
     dq.pop_back(); // 4,1,2
     cout << dq.front() << " " << dq.back() << endl;
 

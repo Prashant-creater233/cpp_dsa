@@ -4,35 +4,34 @@
 using namespace std;
 
 
-// int main() {
-//     //stock prices
-//     vector<int> price = {100, 80, 60, 70, 60, 75, 85};
+int main() {
+    //stock prices
+    vector<int> price = {100, 80, 60, 70, 60, 75, 85};
 
-//     //solution
-//     vector<int> ans(price.size(), 0);
-//     stack<int> s;
+    //solution
+    vector<int> ans(price.size(), 0);
+    stack<int> s;
 
-//     for(int i=0; i<price.size(); i++) {
-//         while(s.size() > 0 && price[s.top()] <= price[i]) {
-//             s.pop();
-//         }
+    for(int i=0; i<price.size(); i++) {
+        while(s.size() > 0 && price[s.top()] <= price[i]) {
+            s.pop();
+        }
 
-//         if(s.size() == 0) {
-//             ans[i] = i+1;
-//         } else {
-//             ans[i] = i - s.top(); // i - prevHigh
-//         }
+        if(s.size() == 0) {
+            ans[i] = i+1;
+        } else {
+            ans[i] = i - s.top();
+        }
+        s.push(i);
+    }
 
-//         s.push(i);
-//     }
+    for(int val : ans) {
+        cout << val << " ";
+    }
+    cout << endl;
 
-//     for(int val : ans) {
-//         cout << val << " ";
-//     }
-//     cout << endl;
-
-//     return 0;
-// }
+    return 0;
+}
 
 
 // Next Greater Element
@@ -105,79 +104,79 @@ using namespace std;
 
 // Previous Smaller element
 
-vector<int> prevSmallerElement(vector<int> &arr) {
-    vector<int> ans(arr.size(), 0);
-    stack<int> s;
+// vector<int> prevSmallerElement(vector<int> &arr) {
+//     vector<int> ans(arr.size(), 0);
+//     stack<int> s;
 
-    for(int i=0; i<arr.size(); i++) {
-        while(s.size() > 0 && s.top() >= arr[i]) {
-            s.pop();
-        }
+//     for(int i=0; i<arr.size(); i++) {
+//         while(s.size() > 0 && s.top() >= arr[i]) {
+//             s.pop();
+//         }
 
-        if(s.empty()) {
-            ans[i] = -1;
-        } else {
-            ans[i] = s.top();
-        }
+//         if(s.empty()) {
+//             ans[i] = -1;
+//         } else {
+//             ans[i] = s.top();
+//         }
 
-        s.push(arr[i]);
-    }
+//         s.push(arr[i]);
+//     }
 
-    return ans;
-}
+//     return ans;
+// }
 
 
-int main() {
-    vector<int> arr = {3, 1, 0, 8, 6};
+// int main() {
+//     vector<int> arr = {3, 1, 0, 8, 6};
 
-    vector<int> ans = prevSmallerElement(arr);
+//     vector<int> ans = prevSmallerElement(arr);
 
-    for(int val : ans) {
-        cout << val << " ";
-    }
-    cout << endl;
+//     for(int val : ans) {
+//         cout << val << " ";
+//     }
+//     cout << endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
-class Solution {
-public:
-    vector<int> spiralOrder(vector<vector<int>>& mat) {
-        int m = mat.size(), n = mat[0].size();
-        int srow = 0, scol = 0, erow = m-1, ecol = n-1;
-        vector<int> ans;
+// class Solution {
+// public:
+//     vector<int> spiralOrder(vector<vector<int>>& mat) {
+//         int m = mat.size(), n = mat[0].size();
+//         int srow = 0, scol = 0, erow = m-1, ecol = n-1;
+//         vector<int> ans;
 
-        while(srow <= erow && scol <= ecol) {
-            //top
-            for(int j=scol; j<=ecol; j++) {
-                ans.push_back(mat[srow][j]);
-            }
+//         while(srow <= erow && scol <= ecol) {
+//             //top
+//             for(int j=scol; j<=ecol; j++) {
+//                 ans.push_back(mat[srow][j]);
+//             }
 
-            //right
-            for(int i=srow+1; i<=erow; i++) {
-                ans.push_back(mat[i][ecol]);
-            }
+//             //right
+//             for(int i=srow+1; i<=erow; i++) {
+//                 ans.push_back(mat[i][ecol]);
+//             }
 
-            //bottom
-            for(int j = ecol-1; j >= scol; j--) {
-                if(srow == erow) {
-                break;
-                }
-                ans.push_back(mat[erow][j]);
-            }
+//             //bottom
+//             for(int j = ecol-1; j >= scol; j--) {
+//                 if(srow == erow) {
+//                 break;
+//                 }
+//                 ans.push_back(mat[erow][j]);
+//             }
 
-            //left
-            for(int i = erow-1; i >= srow+1; i--) {
-                if(scol == ecol) {
-                    break;
-                }
-                ans.push_back(mat[i][scol]);
-            }
+//             //left
+//             for(int i = erow-1; i >= srow+1; i--) {
+//                 if(scol == ecol) {
+//                     break;
+//                 }
+//                 ans.push_back(mat[i][scol]);
+//             }
 
-            srow++; erow--; scol++; ecol--;
+//             srow++; erow--; scol++; ecol--;
 
-        }
+//         }
 
-        return ans;
-    }
-};
+//         return ans;
+//     }
+// };
