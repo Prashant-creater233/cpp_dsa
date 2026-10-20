@@ -62,41 +62,67 @@ using namespace std;
 
 // sliding window maximum by brute force approach
 
+// class Solution {
+// public:
+//     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+//         int n = nums.size();
+//         deque<int> dq;
+//         vector<int> ans;
+
+//         // analyze 1st window 
+//         for(int i=0; i<k; i++) {
+//             while(dq.size() > 0 && nums[dq.back()] <= nums[i]) {
+//                 dq.pop_back();
+//             }
+//             dq.push_back(i);
+//         }
+
+//         // SWE for other windows
+//         for(int i=k; i<n; i++) {
+//             ans.push_back(nums[dq.front()]);
+            
+//             // Remove from deque which are not part of current window
+//             while(dq.size() > 0 && dq.front() <= i-k) {
+//                 dq.pop_front();
+//             }
+
+//             // remove the smaller values
+//             while(dq.size() > 0 && nums[dq.back()] <= nums[i]) {
+//                 dq.pop_back();
+//             }
+//             dq.push_back(i);
+//         }
+//         ans.push_back(nums[dq.front()]);
+
+//        for(int val : ans) {
+//         cout << val << " ";
+//     }
+//        cout << endl;
+//     }
+// };
+
+
+// Gas Station
+
 class Solution {
 public:
-    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
-        int n = nums.size();
-        deque<int> dq;
-        vector<int> ans;
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int totGas = 0, totCost = 0;
 
-        // analyze 1st window 
-        for(int i=0; i<k; i++) {
-            while(dq.size() > 0 && nums[dq.back()] <= nums[i]) {
-                dq.pop_back();
+        //unique solution always exists
+        int start = 0, currGas = 0;
+
+        for(int i=0; i<gas.size(); i++) {  //O(n)
+            totGas += gas[i];
+            totCost += cost[i];
+            currGas += (gas[i] - cost[i]);
+
+            if(currGas < 0) {
+                start = i + 1;
+                currGas = 0;
             }
-            dq.push_back(i);
         }
 
-        // SWE for other windows
-        for(int i=k; i<n; i++) {
-            ans.push_back(nums[dq.front()]);
-            
-            // Remove from deque which are not part of current window
-            while(dq.size() > 0 && dq.front() <= i-k) {
-                dq.pop_front();
-            }
-
-            // remove the smaller values
-            while(dq.size() > 0 && nums[dq.back()] <= nums[i]) {
-                dq.pop_back();
-            }
-            dq.push_back(i);
-        }
-        ans.push_back(nums[dq.front()]);
-
-       for(int val : ans) {
-        cout << val << " ";
-    }
-       cout << endl;
+        return totGas < totCost ? -1 : start;
     }
 };
