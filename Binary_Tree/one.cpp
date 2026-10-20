@@ -41,6 +41,17 @@ void preOrder(Node* root) {
     preOrder(root->right);
 }
 
+//inorder traversal
+void inorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+
+    preOrder(root->left);
+    cout << root->data << " ";
+    preOrder(root->right);
+}
+
 int main() {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
 
@@ -50,6 +61,9 @@ int main() {
     // cout << root->right->data << endl;
 
     preOrder(root);
+    cout << endl;
+
+    inorder(root);
     cout << endl;
 
     return 0;
