@@ -200,11 +200,30 @@ void inorder(Node* root) {
     inorder(root->right);
 }
 
+bool search(Node* root, int key) { //O(height)
+    if(root == NULL) {
+        return false;
+    }
+
+    if(root->data == key) {
+        return true;
+    }
+
+    if(key < root->data) {
+        return search(root->left, key);
+    } else {
+        return search(root->right, key);
+    }
+}
+
 int main() {
     vector<int> arr = {3, 2, 1, 5, 6, 4};
 
     Node* root = builtBST(arr);
     inorder(root);
     cout << endl;
+
+    cout << search(root, 5) << endl;
+
     return 0;
 }
