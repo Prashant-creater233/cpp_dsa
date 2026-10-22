@@ -65,11 +65,42 @@ void topView(Node* root) {
 }
 
 
+//Bottom View of a Binary Tree
+void bottomView(Node* root) {
+    queue<pair<Node*, int>> q; //(node, HD)
+    map<int, int> m; // <HD, node val>
+    q.push({root, 0});
+
+    while(q.size() > 0) {
+        Node* curr = q.front().first;
+        int currHD = q.front().second;
+        q.pop();
+
+        m[currHD] = curr->data; // update values if exixts in map
+
+        if(curr->left != NULL) {
+            q.push({curr->left, currHD - 1});
+        }
+
+        if(curr->right != NULL) {
+            q.push({curr->right, currHD + 1});
+        }
+    }
+
+    for(auto it : m) {
+        cout << it.second << " ";
+    }
+
+    cout << endl;
+}
+
+
 int main() {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     Node* root = buildTree(preorder);
     
     topView(root);
+    bottomView(root);
 
     return 0;
 }
