@@ -106,3 +106,29 @@ public:
         return n == 1;
     }
 };
+
+
+// intersection of two arrays
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_set<int> s1;
+        int n = nums1.size();
+        int m = nums2.size();
+        unordered_set<int> result;
+
+        for(int i=0; i<n; i++) {
+            s1.insert(nums1[i]);
+        }
+
+        for(int j=0; j<m; j++) {
+            if(s1.find(nums2[j]) != s1.end()) {
+                result.insert(nums2[j]);
+            }
+        }
+
+        vector<int> ans(result.begin(), result.end());
+        return ans;
+    }
+};
