@@ -132,3 +132,38 @@ public:
         return ans;
     }
 };
+
+// Binary tree inorder traversal
+
+// class Solution {
+// public:
+//     vector<int> inorderTraversal(TreeNode* root) {
+//         vector<int> ans;
+//         TreeNode* curr = root;
+
+//         // Morris inorder traversal algorithm
+//         while(curr != NULL) {
+//             if(curr->left == NULL) {
+//                 ans.push_back(curr->val);
+//                 curr = curr->right;
+//             } else {
+//                 //find the IP
+//                 TreeNode* IP = curr->left;
+//                 while(IP->right != NULL && IP->right != curr) {
+//                     IP = IP->right;
+//                 }
+
+//                 if(IP->right == NULL) {
+//                     IP->right = curr; //create
+//                     curr = curr->left;
+//                 } else {
+//                     IP->right = NULL; //delete
+//                     ans.push_back(curr->val);
+//                     curr = curr->right;
+//                 }
+//             }
+//         }
+
+//         return ans;
+//     }
+// };
