@@ -67,28 +67,28 @@ void postorder(Node* root) {
 
 
 //level order
-// void levelOrder(Node* root) {
-//     queue<Node*> q;
+void levelOrder(Node* root) {
+    queue<Node*> q;
 
-//     q.push(root);
+    q.push(root);
 
-//     while(q.size() > 0) {
-//         Node* curr = q.front();
-//         q.pop();
+    while(q.size() > 0) {
+        Node* curr = q.front();
+        q.pop();
 
-//         cout << curr->data << " ";
+        cout << curr->data << " ";
 
-//         if(curr->left != NULL) {
-//             q.push(curr->left);
-//         }
+        if(curr->left != NULL) {
+            q.push(curr->left);
+        }
 
-//         if(curr->right != NULL) {
-//             q.push(curr->right);
-//         }
-//     }
+        if(curr->right != NULL) {
+            q.push(curr->right);
+        }
+    }
 
-//     cout << endl;
-// }
+    cout << endl;
+}
 
 // if we print levelwise
 
@@ -154,50 +154,50 @@ void levelOrder(Node* root) {
 
 // Height of a Tree
 
-// int height(Node* root) {
-//     if(root == NULL) {
-//         return 0;
-//     }
+int height(Node* root) {
+    if(root == NULL) {
+        return 0;
+    }
 
-//     int leftHt = height(root->left);
-//     int rightHt = height(root->right);
-//     return max(leftHt, rightHt) + 1;
-// }
+    int leftHt = height(root->left);
+    int rightHt = height(root->right);
+    return max(leftHt, rightHt) + 1;
+}
 
-// // count the total no of nodes in BT
-// int count(Node* root) {
-//     if(root == NULL) {
-//         return 0;
-//     }
+// count the total no of nodes in BT
+int count(Node* root) {
+    if(root == NULL) {
+        return 0;
+    }
 
-//     int leftCount = count(root->left);
-//     int rightCount = count(root->right);
-//     return leftCount + rightCount + 1;
-// }
-
-
-// // Sum of nodes
-// int sum(Node* root) {
-//     if(root == NULL) {
-//         return 0;
-//     }
-
-//     int leftSum = sum(root->left);
-//     int rightSum = sum(root->right);
-//     return leftSum + rightSum + root->data;
-// }
+    int leftCount = count(root->left);
+    int rightCount = count(root->right);
+    return leftCount + rightCount + 1;
+}
 
 
-// int main() {
-//     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
-//     Node* root = buildTree(preorder);
+// Sum of nodes
+int sum(Node* root) {
+    if(root == NULL) {
+        return 0;
+    }
 
-//     cout << "height : " << height(root) << endl;
-//     cout << "Count : " << count(root) << endl;
-//     cout << "Sum : " << sum(root) << endl;
+    int leftSum = sum(root->left);
+    int rightSum = sum(root->right);
+    return leftSum + rightSum + root->data;
+}
 
-//     return 0;
-// }
+
+int main() {
+    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+    Node* root = buildTree(preorder);
+
+    cout << "height : " << height(root) << endl;
+    cout << "Count : " << count(root) << endl;
+    cout << "Sum : " << sum(root) << endl;
+
+    return 0;
+}
 
 
 
