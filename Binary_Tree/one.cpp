@@ -154,54 +154,84 @@ void levelOrder(Node* root) {
 
 // Height of a Tree
 
-int height(Node* root) {
+// int height(Node* root) {
+//     if(root == NULL) {
+//         return 0;
+//     }
+
+//     int leftHt = height(root->left);
+//     int rightHt = height(root->right);
+//     return max(leftHt, rightHt) + 1;
+// }
+
+// // count the total no of nodes in BT
+// int count(Node* root) {
+//     if(root == NULL) {
+//         return 0;
+//     }
+
+//     int leftCount = count(root->left);
+//     int rightCount = count(root->right);
+//     return leftCount + rightCount + 1;
+// }
+
+
+// // Sum of nodes
+// int sum(Node* root) {
+//     if(root == NULL) {
+//         return 0;
+//     }
+
+//     int leftSum = sum(root->left);
+//     int rightSum = sum(root->right);
+//     return leftSum + rightSum + root->data;
+// }
+
+
+// int main() {
+//     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+//     Node* root = buildTree(preorder);
+
+//     cout << "height : " << height(root) << endl;
+//     cout << "Count : " << count(root) << endl;
+//     cout << "Sum : " << sum(root) << endl;
+
+//     return 0;
+// }
+
+
+
+// Transform to Sum Tree
+
+int sumTree(Node* root) { // O(n)
     if(root == NULL) {
         return 0;
     }
 
-    int leftHt = height(root->left);
-    int rightHt = height(root->right);
-    return max(leftHt, rightHt) + 1;
+    int leftSum = sumTree(root->left);
+    int rightSum = sumTree(root->right);
+
+    root->data += leftSum + rightSum;
+
+    return root->data;
 }
-
-// count the total no of nodes in BT
-int count(Node* root) {
-    if(root == NULL) {
-        return 0;
-    }
-
-    int leftCount = count(root->left);
-    int rightCount = count(root->right);
-    return leftCount + rightCount + 1;
-}
-
-
-// Sum of nodes
-int sum(Node* root) {
-    if(root == NULL) {
-        return 0;
-    }
-
-    int leftSum = sum(root->left);
-    int rightSum = sum(root->right);
-    return leftSum + rightSum + root->data;
-}
-
 
 int main() {
     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
     Node* root = buildTree(preorder);
 
-    cout << "height : " << height(root) << endl;
-    cout << "Count : " << count(root) << endl;
-    cout << "Sum : " << sum(root) << endl;
+    cout << "before conversion : ";
+    preOrder(root);
+    cout << endl;
+
+    sumTree(root);
+
+    cout << "after conversion : ";
+    preOrder(root);
+    cout << endl;
 
     return 0;
 }
-
-
-
-
 
 
 
