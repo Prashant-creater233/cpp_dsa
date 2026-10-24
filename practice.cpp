@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <unordered_set>
 using namespace std;
 
 int main() {
@@ -61,3 +62,17 @@ void reverseArray(vector<int>& arr) {
         j--;
     }
 }
+
+// check if sentence is pangram
+class Solution {
+public:
+    bool checkIfPangram(string sentence) {
+        unordered_set<char> s;
+    
+        for(int i=0; i<sentence.size(); i++) {
+            s.insert(sentence[i]);
+        }
+
+        return s.size() == 26;
+    }
+};
