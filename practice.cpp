@@ -263,3 +263,26 @@ public:
         return true;
     }
 };
+
+
+//count number of words
+
+class Solution {
+  public:
+    int countWords(string &s) {
+        // code here
+        int count = 0;
+        bool inWord = false;
+        
+        for(int i=0; i<s.size(); i++) {
+            if(s[i] == ' ' || s[i] == '\n' || s[i] == '\t') {
+                inWord = false;
+            } else if (!inWord) {
+                count++;
+                inWord = true;
+            }
+        }
+        
+        return count;
+    }
+};
