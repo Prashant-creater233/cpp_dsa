@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <unordered_map>
+#include <map>
 #include <unordered_set>
 using namespace std;
 
@@ -197,3 +198,42 @@ public:
 //         return (isLeftSame && isRightSame && (p->val == q->val));
 //     }
 // };
+
+
+// isomorphic string
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        map<char, char> mp1;
+        map<char, char> mp2;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            // s -> t check
+            if (mp1.find(s[i]) != mp1.end()) {
+                if (mp1[s[i]] != t[i]) {
+                    return false;
+                }
+            }
+
+            // t -> s check
+            if (mp2.find(t[i]) != mp2.end()) {
+                if (mp2[t[i]] != s[i]) {
+                    return false;
+                }
+            }
+
+            // mapping store
+            mp1[s[i]] = t[i];
+            mp2[t[i]] = s[i];
+        }
+
+        return true;
+    }
+};
