@@ -286,3 +286,36 @@ class Solution {
         return count;
     }
 };
+
+// minimum repeat to make a substring
+
+class Solution {
+  public:
+    int minRepeats(string& s1, string& s2) {
+        // code here
+        
+        string temp = "";
+        int count = 0;
+        
+        while(temp.length() < s2.length()) {
+            temp += s1;
+            count++;
+        }
+        
+        //current string check
+        if(temp.find(s2) != string::npos) {
+            return count;
+        }
+        
+        //one extra repetation
+        temp += s1;
+        count++;
+        
+        if(temp.find(s2) != string::npos) {
+            return count;
+        }
+        
+        return -1;
+        
+    }
+};
