@@ -16,20 +16,20 @@ public:
     }
 };
 
-static int idx = -1;
-Node* buildTree(vector<int> preorder) {
-    idx++;
+// static int idx = -1;
+// Node* buildTree(vector<int> preorder) {
+//     idx++;
 
-    if(preorder[idx] == -1) {
-        return NULL;
-    }
+//     if(preorder[idx] == -1) {
+//         return NULL;
+//     }
 
-    Node* root = new Node(preorder[idx]);
-    root->left = buildTree(preorder); //LEFT
-    root->right = buildTree(preorder); // RIGHT
+//     Node* root = new Node(preorder[idx]);
+//     root->left = buildTree(preorder); //LEFT
+//     root->right = buildTree(preorder); // RIGHT
 
-    return root;
-}
+//     return root;
+// }
 
 //preorder
 void preOrder(Node* root) {
@@ -188,16 +188,16 @@ int sum(Node* root) {
 }
 
 
-int main() {
-    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
-    Node* root = buildTree(preorder);
+// int main() {
+//     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+//     Node* root = buildTree(preorder);
 
-    cout << "height : " << height(root) << endl;
-    cout << "Count : " << count(root) << endl;
-    cout << "Sum : " << sum(root) << endl;
+//     cout << "height : " << height(root) << endl;
+//     cout << "Count : " << count(root) << endl;
+//     cout << "Sum : " << sum(root) << endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 
@@ -216,168 +216,21 @@ int sumTree(Node* root) { // O(n)
     return root->data;
 }
 
-int main() {
-    vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
-    Node* root = buildTree(preorder);
-
-    cout << "before conversion : ";
-    preOrder(root);
-    cout << endl;
-
-    sumTree(root);
-
-    cout << "after conversion : ";
-    preOrder(root);
-    cout << endl;
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// BST 
-
-// class Node {
-// public:
-//     int data;
-//     Node* left;
-//     Node* right;
-
-//     Node(int val) {
-//         data = val;
-//         left = right = NULL;
-//     }
-// };
-
-// Node* insert(Node* root, int val) {
-//     if(root == NULL) {
-//         return new Node(val);
-//     }
-
-//     if(val < root->data) {
-//         root->left = insert(root->left, val);
-//     } else {
-//         root->right = insert(root->right, val);
-//     }
-
-//     return root;
-// }
-
-// Node* builtBST(vector<int> arr) {
-//     Node* root = NULL;
-
-//     for(int val : arr) {
-//         root = insert(root, val);
-//     }
-
-//     return root;
-// }
-
-// void inorder(Node* root) {
-//     if(root == NULL) {
-//         return;
-//     }
-
-//     inorder(root->left);
-//     cout << root->data << " ";
-//     inorder(root->right);
-// }
-
-// bool search(Node* root, int key) { //O(height)
-//     if(root == NULL) {
-//         return false;
-//     }
-
-//     if(root->data == key) {
-//         return true;
-//     }
-
-//     if(key < root->data) {
-//         return search(root->left, key);
-//     } else {
-//         return search(root->right, key);
-//     }
-// }
-
-// Node* getInorderSuccessor(Node* root) { // left most node in right subtree
-//     while(root != NULL && root->left != NULL) {
-//         root = root->left;
-//     }
-
-//     return root;
-// }
-
-// Node* delNode(Node* root, int key) { // key => val to delete
-//     if(root == NULL) {
-//         return NULL;
-//     }
-
-//     if(key < root->data) {
-//         root->left = delNode(root->left, key);
-//     } else if(key > root->data) {
-//         root->right = delNode(root->right, key);
-//     }  else {
-//         // key == root
-//         if(root->left == NULL) {
-//             Node* temp = root->right;
-//             delete root;
-//             return temp;
-//         } else if(root->right == NULL) {
-//             Node* temp = root->left;
-//             delete root;
-//             return temp;
-//         } else { //2 children
-//             Node* IS = getInorderSuccessor(root->right);
-//             root->data = IS->data;
-//             root->right = delNode(root->right, IS->data);
-//         }
-//     }
-
-//     return root;
-// }
-
 // int main() {
-//     vector<int> arr = {3, 2, 1, 5, 6, 4};
+//     vector<int> preorder = {1, 2, -1, -1, 3, 4, -1, -1, 5, -1, -1};
+//     Node* root = buildTree(preorder);
 
-//     Node* root = builtBST(arr);
-//     cout << "before : ";
-//     inorder(root);
+//     cout << "before conversion : ";
+//     preOrder(root);
 //     cout << endl;
 
-//     // cout << search(root, 5) << endl;
+//     sumTree(root);
 
-//     delNode(root, 6);
-
-//     cout << "after : ";
-//     inorder(root);
+//     cout << "after conversion : ";
+//     preOrder(root);
 //     cout << endl;
 
 //     return 0;
 // }
+
+
