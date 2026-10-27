@@ -558,3 +558,23 @@ public:
 //         return helper(nums, 0, nums.size()-1);
 //     }
 // };
+
+//flatten binary tree
+
+// class Solution {
+// public:
+//     TreeNode* nextRight = NULL; // declare as globally
+
+//     void flatten(TreeNode* root) {
+//         if(root == NULL) {
+//             return;
+//         }
+
+//         flatten(root->right);
+//         flatten(root->left);
+
+//         root->left = NULL;
+//         root->right = nextRight;
+//         nextRight = root;
+//     }
+// };
