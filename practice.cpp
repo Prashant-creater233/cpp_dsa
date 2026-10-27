@@ -578,3 +578,35 @@ public:
 //         nextRight = root;
 //     }
 // };
+
+
+// count negatve no of matrix
+
+class Solution {
+public:
+    int countNegatives(vector<vector<int>>& grid) {
+        int count = 0;
+        int m = grid.size();
+        int n = grid[0].size();
+
+        for(int i=0; i<m; i++) {
+            int st =0, end = n-1;
+            int ans = n;
+
+            while(st <= end) {
+                int mid = st + (end - st)/2;
+                
+                if(grid[i][mid] < 0) {
+                    ans = mid;
+                    end = mid-1;
+                } else {
+                    st = mid + 1;
+                }
+            }
+            
+            count += n - ans;
+        }
+
+        return count;
+    }
+};
