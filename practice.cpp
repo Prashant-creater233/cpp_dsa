@@ -752,3 +752,23 @@ public:
 //         return -1;
 //     }
 // };
+
+
+// lowest common ancestor
+
+// class Solution {
+// public:
+//     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+//         if(root == NULL) {
+//             return NULL;
+//         }
+
+//         if(root->val > p->val && root->val > q->val) { //left suubtree
+//             return lowestCommonAncestor(root->left, p, q);
+//         } else if(root->val < p->val && root->val < q->val) { //right subtree
+//             return lowestCommonAncestor(root->right, p, q);
+//         } else {
+//             return root;
+//         }
+//     }
+// };
