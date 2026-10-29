@@ -18,72 +18,130 @@ public:
 
 // find inorder Successor and inorder Predecessor
 
-Node* rightMostInleftSubtree(Node* root) {
-    Node* ans;
+// Node* rightMostInleftSubtree(Node* root) {
+//     Node* ans;
 
-    while(root != NULL) {
-        ans = root;
-        root = root->right;
-    }
+//     while(root != NULL) {
+//         ans = root;
+//         root = root->right;
+//     }
 
-    return ans;
-}
+//     return ans;
+// }
 
-Node* leftMostInRightSubtree(Node* root) {
-    Node* ans;
+// Node* leftMostInRightSubtree(Node* root) {
+//     Node* ans;
 
-    while(root != NULL) {
-        ans = root;
-        root = root->left;
-    }
+//     while(root != NULL) {
+//         ans = root;
+//         root = root->left;
+//     }
 
-    return ans;
-}
+//     return ans;
+// }
 
-vector<int> getPredSucc(Node* root, int key) {
-    Node* curr = root;
-    Node* pred = NULL;
-    Node* succ = NULL;
+// vector<int> getPredSucc(Node* root, int key) {
+//     Node* curr = root;
+//     Node* pred = NULL;
+//     Node* succ = NULL;
 
-    while(curr != NULL) {
-        if(key < curr->data) {
-            succ = curr;
-            curr = curr->left;
-        } else if(key > curr->data) {
-            pred = curr;
-            curr = curr->right;
-        } else {
+//     while(curr != NULL) {
+//         if(key < curr->data) {
+//             succ = curr;
+//             curr = curr->left;
+//         } else if(key > curr->data) {
+//             pred = curr;
+//             curr = curr->right;
+//         } else {
             
-            if(curr->left != NULL) {
-                //inorder pred
-                pred = rightMostInleftSubtree(curr->left);
-            }
+//             if(curr->left != NULL) {
+//                 //inorder pred
+//                 pred = rightMostInleftSubtree(curr->left);
+//             }
 
-            if(curr->right != NULL) {
-                //inorder succ
-                succ = leftMostInRightSubtree(curr->right);
-            }
+//             if(curr->right != NULL) {
+//                 //inorder succ
+//                 succ = leftMostInRightSubtree(curr->right);
+//             }
 
-            break;
-        }
+//             break;
+//         }
+//     }
+
+//     return {pred->data, succ->data};
+// }
+
+
+// int main() {
+//     Node* root = new Node(6);
+//     root->left = new Node(4);
+//     root->right = new Node(8);
+//     root->left->left = new Node(1);
+//     root->left->right = new Node(5);
+//     root->right->left = new Node(7);
+//     root->right->right = new Node(9);
+
+//     int key = 6;
+//     vector<int> ans = getPredSucc(root, key);
+
+//     cout << "predecessor: " << ans[0] << endl;
+//     cout << "successor: " << ans[1] << endl;
+// }
+
+
+
+// Largest BST in binary tree return size
+
+// 1> By BruteForce Approach
+
+int countNodes(Node* root) {
+    if(root == NULL) {
+        return 0;
     }
 
-    return {pred->data, succ->data};
+    return countNodes(root->left) + countNodes(root->right) + 1;
+}
+
+bool isValidBST(Node* root, Node* min, Node* max) {
+    if(root == NULL) {
+        return true;
+    }
+
+    if(min != NULL && root->data <= min->data) {
+        return false;
+    }
+
+    if(max != NULL && root->data >= max->data) {
+        return false;
+    }
+
+    return isValidBST(root->left, min, root) && isValidBST(root->right, root, max);
+}
+
+int largestBSTSubtree(Node* root) {
+    if(root == NULL) {
+        return 0;
+    }
+
+    //agar current subtree BST ha
+    if(isValidBST(root, NULL, NULL)) {
+        return countNodes(root);
+    }
+
+    //otherwise, left aur right subtree check karo
+    return max(largestBSTSubtree(root->left), largestBSTSubtree(root->right));
 }
 
 
 int main() {
-    Node* root = new Node(6);
-    root->left = new Node(4);
-    root->right = new Node(8);
+    Node* root = new Node(5);
+    root->left = new Node(2);
+    root->right = new Node(4);
     root->left->left = new Node(1);
-    root->left->right = new Node(5);
-    root->right->left = new Node(7);
-    root->right->right = new Node(9);
+    root->left->right = new Node(3);
 
-    int key = 6;
-    vector<int> ans = getPredSucc(root, key);
+    cout << "Largest BST size: "
+         << largestBSTSubtree(root) << endl;
 
-    cout << "predecessor: " << ans[0] << endl;
-    cout << "successor: " << ans[1] << endl;
+    return 0;
 }
