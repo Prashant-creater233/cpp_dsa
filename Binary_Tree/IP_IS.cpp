@@ -94,54 +94,109 @@ public:
 
 // 1> By BruteForce Approach
 
-int countNodes(Node* root) {
+// int countNodes(Node* root) {
+//     if(root == NULL) {
+//         return 0;
+//     }
+
+//     return countNodes(root->left) + countNodes(root->right) + 1;
+// }
+
+// bool isValidBST(Node* root, Node* min, Node* max) {
+//     if(root == NULL) {
+//         return true;
+//     }
+
+//     if(min != NULL && root->data <= min->data) {
+//         return false;
+//     }
+
+//     if(max != NULL && root->data >= max->data) {
+//         return false;
+//     }
+
+//     return isValidBST(root->left, min, root) && isValidBST(root->right, root, max);
+// }
+
+// int largestBSTSubtree(Node* root) {
+//     if(root == NULL) {
+//         return 0;
+//     }
+
+//     //agar current subtree BST ha
+//     if(isValidBST(root, NULL, NULL)) {
+//         return countNodes(root);
+//     }
+
+//     //otherwise, left aur right subtree check karo
+//     return max(largestBSTSubtree(root->left), largestBSTSubtree(root->right));
+// }
+
+
+// int main() {
+//     Node* root = new Node(5);
+//     root->left = new Node(2);
+//     root->right = new Node(4);
+//     root->left->left = new Node(1);
+//     root->left->right = new Node(3);
+
+//     cout << "Largest BST size: "
+//          << largestBSTSubtree(root) << endl;
+
+//     return 0;
+// }
+
+
+// 2) By Optimizing Approach
+
+class Info {
+public:    
+    int min, max, sz;
+
+    Info(int mi, int ma, int size) {
+        min = mi;
+        max = ma; 
+        sz = size;
+    }
+};
+
+
+
+Info helper(Node* root) { // O(n)
     if(root == NULL) {
-        return 0;
+        return Info(INT_MAX, INT_MIN, 0);
     }
 
-    return countNodes(root->left) + countNodes(root->right) + 1;
+    Info left = helper(root->left);
+    Info right = helper(root->right);
+
+    if(root->data > left.max && root->data < right.min) {
+        int currMin = min(root->data, left.min);
+        int currMax = max(root->data, right.max);
+        int currSize = left.sz + right.sz + 1;
+
+        return Info(currMin , currMax, currSize);
+    }
+
+    return Info(INT_MIN, INT_MAX, max(left.sz, right.sz));
 }
 
-bool isValidBST(Node* root, Node* min, Node* max) {
-    if(root == NULL) {
-        return true;
-    }
 
-    if(min != NULL && root->data <= min->data) {
-        return false;
-    }
-
-    if(max != NULL && root->data >= max->data) {
-        return false;
-    }
-
-    return isValidBST(root->left, min, root) && isValidBST(root->right, root, max);
-}
-
-int largestBSTSubtree(Node* root) {
-    if(root == NULL) {
-        return 0;
-    }
-
-    //agar current subtree BST ha
-    if(isValidBST(root, NULL, NULL)) {
-        return countNodes(root);
-    }
-
-    //otherwise, left aur right subtree check karo
-    return max(largestBSTSubtree(root->left), largestBSTSubtree(root->right));
+int largestBSTinBT(Node* root) {
+    Info info = helper(root);
+    return info.sz; // max BST size
 }
 
 
 int main() {
-    Node* root = new Node(5);
-    root->left = new Node(2);
-    root->right = new Node(4);
+    Node* root = new Node(10);
+    root->left = new Node(5);
+    root->right = new Node(15);
     root->left->left = new Node(1);
-    root->left->right = new Node(3);
+    root->left->right = new Node(8);
+    root->right->right = new Node(7);
 
-    cout << "Largest BST size: "
-         << largestBSTSubtree(root) << endl;
+    cout << largestBSTinBT(root) << endl;
 
     return 0;
 }
