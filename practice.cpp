@@ -1069,3 +1069,33 @@ public:
         return nums;
     }
 };
+
+
+// row with maximum ones
+
+
+class Solution {
+public:
+    vector<int> rowAndMaximumOnes(vector<vector<int>>& mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+
+        int maxx = -1;
+        int idx = 0;
+
+        for(int i = 0; i < m; i++) {
+            int curr = 0;
+
+            for(int j = 0; j < n; j++) {
+                curr += mat[i][j];
+            }
+
+            if(curr > maxx) {
+                maxx = curr;
+                idx = i;
+            }
+        }
+
+        return {idx, maxx};
+    }
+};
