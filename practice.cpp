@@ -1130,3 +1130,22 @@ public:
         return {idx, maxx};
     }
 };
+
+
+// running sum of 1d array
+
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        vector<int> ans;
+        int s = 0;
+        int n = nums.size();
+
+        for (int i = 0; i < n; i++) {
+            s = s + nums[i];
+            ans.push_back(s);
+        }
+
+        return ans;
+    }
+};
