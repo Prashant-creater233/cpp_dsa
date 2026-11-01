@@ -5,6 +5,74 @@
 using namespace std;
 
 
+// class Graph {
+
+//     int V;
+//     list<int> *l; //int *arr;
+
+// public:
+//     Graph(int V) {
+//         this->V = V;
+//         l = new list<int> [V];
+//         //arr = new int[V]
+//     }   
+    
+//     void addEdge(int u, int v) {
+//         l[u].push_back(v);
+//         l[v].push_back(u);
+//     }
+
+//     bool isCycleUndirDFS(int src, int par, vector<bool> &vis) { // O(V+E) (Time Complexity)
+//         vis[src] = true;
+//         list<int> neighbors = l[src];
+
+//         for(int v : neighbors) {
+//             if(!vis[v]) {
+//                 if(isCycleUndirDFS(v, src, vis)) {
+//                     return true;
+//                 } 
+//             } else if(v != par) {
+//                 return true;
+//             }
+//         }
+
+//         return false;
+//     }
+
+//     bool isCycle() {
+//         vector<bool> vis(V, false);
+
+//         for(int i = 0; i < V; i++) {
+//             if(!vis[i]) {
+//                 if(isCycleUndirDFS(i, -1, vis)) {
+//                     return true;
+//                 }
+//             }
+//         }
+
+//         return false;
+//     }
+// };
+
+// int main() {
+//     Graph g(5);
+
+//     g.addEdge(0, 1);
+//     g.addEdge(0, 2);
+//     g.addEdge(0, 3);
+//     g.addEdge(1, 2);
+//     g.addEdge(3, 4);
+
+//     cout << g.isCycle() << endl;
+
+//     return 0;
+// }
+
+
+
+// cycle detection in undirected graph using BFS
+
+
 class Graph {
 
     int V;
@@ -22,17 +90,23 @@ public:
         l[v].push_back(u);
     }
 
-    bool isCycleUndirDFS(int src, int par, vector<bool> &vis) { // O(V+E) (Time Complexity)
+    bool isCycleUndirBFS(int src, vector<bool> &vis) { // O(V+E) (Time Complexity)
+        queue<pair<int, int>> q;
+        q.push({src, -1});
         vis[src] = true;
-        list<int> neighbors = l[src];
 
-        for(int v : neighbors) {
-            if(!vis[v]) {
-                if(isCycleUndirDFS(v, src, vis)) {
+        while(q.size() > 0) {
+            auto [u, par] = q.front();
+            q.pop();
+
+            list<int> neighbors = l[u];
+            for(int v : neighbors) {
+                if(!vis[v]) {
+                    vis[v] = true;
+                    q.push({v, u});
+                } else if(v != par) {
                     return true;
-                } 
-            } else if(v != par) {
-                return true;
+                }
             }
         }
 
@@ -42,9 +116,9 @@ public:
     bool isCycle() {
         vector<bool> vis(V, false);
 
-        for(int i = 0; i < V; i++) {
+        for(int i = 0; i < V; i++) { // we apply this for loop because the graph can be disconnected, so we need to check for all the components of the graph.
             if(!vis[i]) {
-                if(isCycleUndirDFS(i, -1, vis)) {
+                if(isCycleUndirBFS(i, vis)) {
                     return true;
                 }
             }
