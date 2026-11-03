@@ -1536,3 +1536,29 @@ public:
         return ans;
     }
 };
+
+
+// Maximum product of two digits
+
+class Solution {
+public:
+    int maxProduct(int n) {
+        vector<int> ans;
+
+        while(n > 0) {
+            int dig = n % 10;
+            ans.push_back(dig);
+            n = n/10;
+        }
+
+        int maxProd = INT_MIN;
+        for(int i=0; i<ans.size(); i++) {
+            for(int j=i+1; j<ans.size(); j++){
+                int prod = ans[i]*ans[j];
+                maxProd = max(maxProd, prod);
+            }
+        }
+
+        return maxProd;
+    }
+};
