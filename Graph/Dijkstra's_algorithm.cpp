@@ -3,6 +3,7 @@
 #include <list>
 #include <queue>
 #include <stack>
+#include <climits>
 using namespace std;
 
 
@@ -28,10 +29,10 @@ void dijkstra(int src, vector<vector<Edge>>& g, int V) {
     vector<int> dist(V, INT_MAX);
     dist[src] = 0;
 
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; //<dist[u], u>
     pq.push({0, src});
 
-    while (!pq.empty()) {
+    while (pq.size() > 0) {
         int u = pq.top().second;
         pq.pop();
 
@@ -45,16 +46,10 @@ void dijkstra(int src, vector<vector<Edge>>& g, int V) {
 
     // Print shortest distances
     for (int i = 0; i < V; i++) {
-        cout << "Distance from source " << src
-             << " to vertex " << i << " is ";
-
-        if (dist[i] == INT_MAX)
-            cout << "INF";
-        else
-            cout << dist[i];
-
-        cout << endl;
+        cout << dist[i] << " ";
     }
+        cout << endl;
+    
 }
 
 
@@ -76,5 +71,6 @@ int main() {
     g[4].push_back(Edge(5, 5));
 
     dijkstra(0, g, V);
+    
     return 0;
 }
