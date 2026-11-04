@@ -18,6 +18,11 @@ public:
 
 };
 
+
+// in C++
+// priority_queue<pair<int> pq; // max heap
+// priority_queue<pair<int, vector<int>, greater<int> >pq; // min heap
+
 void dijkstra(int src, vector<vector<Edge>>& g, int V) {
 
     vector<int> dist(V, INT_MAX);
