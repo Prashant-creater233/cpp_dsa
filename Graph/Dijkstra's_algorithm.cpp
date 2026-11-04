@@ -16,7 +16,41 @@ public:
         this->wt = wt;
     }
 
-};    
+};
+
+void dijkstra(int src, vector<vector<Edge>>& g, int V) {
+
+    vector<int> dist(V, INT_MAX);
+    dist[src] = 0;
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, src});
+
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        for (Edge e : g[u]) {
+            if (dist[e.v] > dist[u] + e.wt) {
+                dist[e.v] = dist[u] + e.wt;
+                pq.push({dist[e.v], e.v});
+            }
+        }
+    }
+
+    // Print shortest distances
+    for (int i = 0; i < V; i++) {
+        cout << "Distance from source " << src
+             << " to vertex " << i << " is ";
+
+        if (dist[i] == INT_MAX)
+            cout << "INF";
+        else
+            cout << dist[i];
+
+        cout << endl;
+    }
+}
 
 
 int main() {
@@ -36,5 +70,6 @@ int main() {
     g[4].push_back(Edge(3, 2));
     g[4].push_back(Edge(5, 5));
 
+    dijkstra(0, g, V);
     return 0;
 }
