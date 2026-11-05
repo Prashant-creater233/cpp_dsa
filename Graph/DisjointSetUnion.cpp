@@ -41,8 +41,28 @@ public:
 
         return find(par[x]);
     }
+
+    void getInfo() { // addition function
+        for(int i=0; i<n; i++) {
+            cout << "Node: " << i << ", Parent: " << par[i] << ", Rank: " << rank[i] << endl;
+        }
+    }
 };
 
 int main() {
-    
+    DisjointSetUnion dsu(6);
+
+    dsu.unionByRank(0, 2);
+    cout << dsu.find(2) << endl;
+
+    dsu.unionByRank(1, 3);
+    dsu.unionByRank(2, 5);
+    dsu.unionByRank(0, 3);
+    cout << dsu.find(2) << endl;
+
+    dsu.unionByRank(0, 4);
+    cout << dsu.find(4) << endl;
+
+    dsu.getInfo(); // addition function
+    return 0;
 }
