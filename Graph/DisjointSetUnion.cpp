@@ -39,7 +39,7 @@ public:
             return x;
         }
 
-        return find(par[x]);
+        return par[x] = find(par[x]); // path compression can be added here for optimization
     }
 
     void getInfo() { // addition function
