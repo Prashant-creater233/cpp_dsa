@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+
+class DisjointSetUnion {
+public:
+    int n;
+    vector<int> par, rank;
+
+    DisjointSetUnion(int n) {
+        this->n = n;
+
+        for(int i=0; i<n; i++) {
+            par.push_back(i);
+            rank.push_back(0);
+        }
+    }
+
+    void unionByRank(int a, int b) {
+        int parA = find(a);
+        int parB = find(b);
+
+        if(parA == parB) return;
+
+        if(rank[parA] == rank[parB]) { //case1
+            par[parB] = parA;
+            rank[parA]++;
+        } else if(rank[parA] > rank[parB]) { //case2
+            par[parB] = parA;
+        } else { //case3
+            par[parA] = parB;
+        }
+    }
+
+    int find(int x) {
+        if(par[x] == x) {
+            return x;
+        }
+
+        return find(par[x]);
+    }
+};
+
+int main() {
+    
+}
