@@ -5,17 +5,32 @@ using namespace std;
 
 
 //fibonacci Recursion code
-int fib(int n) {
+// int fib(int n) {
+//     if(n <= 1) {
+//         return n;
+//     }
+
+//     return fib(n-1) + fib(n-2);
+// }
+
+//fibonacci DP code
+int fibDP(int n, vector<int> &f) {
     if(n <= 1) {
         return n;
     }
 
-    return fib(n-1) + fib(n-2);
+    if(f[n] != -1) {
+        return f[n];
+    }
+
+    return f[n] = fibDP(n-1, f) + fibDP(n-2, f);
 }
 
 int main() {
     int n = 6;
-    cout << fib(n) << endl;
+    vector<int> f(n+1, -1);
+    // cout << fib(n) << endl;
+    cout << fibDP(n, f) << endl;
 
     return 0;
 }
