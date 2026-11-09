@@ -40,21 +40,42 @@ int fibTabDP(int n) {
     return dp[n];
 }
 
-int main() {
-    int n = 6;
-    vector<int> f(n+1, -1);
-    // cout << fib(n) << endl;
-    // cout << fibDP(n, f) << endl;
-    cout << fibTabDP(n) << endl;
+// int main() {
+//     int n = 6;
+//     vector<int> f(n+1, -1);
+//     // cout << fib(n) << endl;
+//     // cout << fibDP(n, f) << endl;
+//     cout << fibTabDP(n) << endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 
 // Frog Jump Problem DP
 
 
+int minCost(vector<int> &height) {
+    int n = height.size();
+
+    if(n == 1) return 0;
+
+    vector<int> dp(n); // dp[i] => min cost to reach last stair i
+
+    dp[0] = 0;
+    dp[1] = abs(height[1] - height[0]);
+
+    for(int i=2; i<n; i++) {
+        dp[i] = min(dp[i-1] + abs(height[i] - height[i-1]), dp[i-2] + abs(height[i] - height[i-2]));
+    }
+
+    return dp[n-1];
+}
+
 int main() {
-    
+    vector<int> height = {30, 20, 50, 10, 40}; // 30
+
+    cout << minCost(height) << endl;
+
+    return 0;
 }
