@@ -55,23 +55,45 @@ int fibTabDP(int n) {
 // Frog Jump Problem DP
 
 
-int minCost(vector<int> &height) {
+// int minCost(vector<int> &height) {  // O(n)  but SC = O(n)
+//     int n = height.size();
+
+//     if(n == 1) return 0;
+
+//     vector<int> dp(n); // dp[i] => min cost to reach last stair i
+
+//     dp[0] = 0;
+//     dp[1] = abs(height[1] - height[0]);
+
+//     for(int i=2; i<n; i++) {
+//         int jump1 = dp[i-1] + abs(height[i] - height[i-1]);
+//         int jump2 = dp[i-2] + abs(height[i] - height[i-2]);
+//         dp[i] = min(jump1, jump2);
+//     }
+
+//     return dp[n-1];
+// }
+
+int minCost(vector<int> &height) {  // TC = O(n)  but SC = O(1)
     int n = height.size();
 
     if(n == 1) return 0;
 
-    vector<int> dp(n); // dp[i] => min cost to reach last stair i
-
-    dp[0] = 0;
-    dp[1] = abs(height[1] - height[0]);
+    int prev1 = 0;
+    int prev2 = abs(height[1] - height[0]);
+    int result = prev2;
 
     for(int i=2; i<n; i++) {
-        int jump1 = dp[i-1] + abs(height[i] - height[i-1]);
-        int jump2 = dp[i-2] + abs(height[i] - height[i-2]);
-        dp[i] = min(jump1, jump2);
+        int jump1 = prev2 + abs(height[i] - height[i-1]);
+        int jump2 = prev1 + abs(height[i] - height[i-2]);
+
+        result = min(jump1, jump2);
+
+        prev1 = prev2;
+        prev2 = result;
     }
 
-    return dp[n-1];
+    return result;
 }
 
 int main() {
