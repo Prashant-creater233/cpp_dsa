@@ -2144,9 +2144,9 @@ public:
 };
 
 
-// min cost to climbing stairs ()
+// min cost to climbing stairs (no vector use we optimise space complexity)
 
-class Solution {
+class Solution { // TC = O(n)  SC = (1)
 public:
     int minCostClimbingStairs(vector<int>& cost) {
         int n = cost.size();
