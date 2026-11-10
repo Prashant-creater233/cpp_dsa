@@ -2187,3 +2187,48 @@ public:
 };
 
 
+// find if path exixts in graph
+
+
+class Solution {
+public:
+    bool dfs(vector<vector<int>>& adj, vector<bool>& vis, int src, int dest) {
+
+        vis[src] = true;
+
+        // Base case
+        if(src == dest) {
+            return true;
+        }
+
+        // Visit neighbours
+        for(auto v : adj[src]) {
+            if(!vis[v]) {
+
+                if(dfs(adj, vis, v, dest)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+
+        // Create adjacency list
+        vector<vector<int>> adj(n);
+
+        for(auto edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+
+        vector<bool> vis(n, false);
+
+        return dfs(adj, vis, source, destination);
+    }
+};
