@@ -2413,3 +2413,34 @@ public:
         return maxx;
     }
 };
+
+
+// Maximum 69 Number
+
+class Solution {
+public:
+    int maximum69Number(int num) {
+        vector<int> arr;
+
+        while(num != 0) {
+            int dig = num % 10;
+            arr.push_back(dig);
+            num = num / 10;
+        }
+
+        for(int i = arr.size()-1; i >= 0; i--) {
+            if(arr[i] == 6) {
+                arr[i] = 9;
+                break;
+            }
+        }
+
+        int num1 = 0;
+
+        for(int i = arr.size()-1; i >= 0; i--) {
+            num1 = num1 * 10 + arr[i];
+        }
+
+        return num1;
+    }
+};
