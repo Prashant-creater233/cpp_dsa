@@ -4,56 +4,88 @@
 using namespace std;
 
 
+// static bool compare(vector<int>& a, vector<int>& b) {
+//     double a1 = (1.0 * a[0]) / a[1];
+//     double b1 = (1.0 * b[0]) / b[1];
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
+//     return a1 > b1;
+// }
 
-static bool compare(vector<int>& a, vector<int>& b) {
-    double a1 = (1.0 * a[0]) / a[1];
-    double b1 = (1.0 * b[0]) / b[1];
+// double fractionalKnapsack(vector<vector<int>>& items, int K) {
 
-    return a1 > b1;
-}
+//     sort(items.begin(), items.end(), compare);
 
-double fractionalKnapsack(vector<vector<int>>& items, int K) {
+//     double maxVal = 0.0;
 
-    sort(items.begin(), items.end(), compare);
+//     for(auto& item : items) {
 
-    double maxVal = 0.0;
+//         int val = item[0];
+//         int wt = item[1];
 
-    for(auto& item : items) {
+//         if(wt <= K) {
+//             maxVal += val;
+//             K -= wt;
+//         }
+//         else {
+//             maxVal += ((double)val / wt) * K;
+//             break;
+//         }
+//     }
 
-        int val = item[0];
-        int wt = item[1];
+//     return maxVal;
+// }
 
-        if(wt <= K) {
-            maxVal += val;
-            K -= wt;
-        }
-        else {
-            maxVal += ((double)val / wt) * K;
-            break;
-        }
+// int main() {
+
+//     vector<vector<int>> items = { //370
+//         {60, 10},
+//         {100, 20},
+//         {120, 30},
+//         {80, 40},
+//         {150, 15}
+//     };
+
+//     int K = 60;
+
+//     cout << fractionalKnapsack(items, K) << endl;
+
+//     return 0;
+// }
+
+
+
+
+// 0/1 Knapsack (brute-force) from recursion
+
+double knapsack01_Rec(vector<vector<int>>& items, int W, int n) {
+    if(n == 0 || W == 0) {
+        return 0;
     }
 
-    return maxVal;
+    int val = items[n-1][0];
+    int wt = items[n-1][1];
+
+    if(wt <= W) {
+        int include = val + knapsack01_Rec(items, W-wt, n-1);
+        int exclude = knapsack01_Rec(items, W, n-1);
+        return max(include, exclude);
+    } else {
+        return knapsack01_Rec(items, W, n-1);
+    }
 }
 
 int main() {
-
     vector<vector<int>> items = {
-        {60, 10},
-        {100, 20},
-        {120, 30},
-        {80, 40},
-        {150, 15}
-    };
+        {20, 2},
+        {30 ,3},
+        {50, 4},
+        {60, 5},
+        {100, 9}
+    }; // val, wt
 
-    int K = 60;
+    int W = 10;
 
-    cout << fractionalKnapsack(items, K) << endl;
+    cout << knapsack01_Rec(items, W, items.size()) << endl;
 
     return 0;
 }
