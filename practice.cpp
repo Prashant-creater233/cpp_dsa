@@ -2510,3 +2510,39 @@ public:
         return slow;
     }
 };
+
+
+// Relative sort array
+
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        map<int, int> m;
+        vector<int> ans;
+
+        // Step 1: Store frequency of arr1
+        for(int i=0; i<arr1.size(); i++) {
+            m[arr1[i]]++;
+        }
+
+        // Step 2: Arrange elements according to arr2
+        for(int i=0; i<arr2.size(); i++) {
+            int num = arr2[i];
+
+            while(m[num] > 0) {
+                ans.push_back(arr2[i]);
+                m[num]--;
+            }
+        }
+
+        // Step 3: Add remaining elements in ascending order
+        for(auto it : m) {
+            while(it.second > 0) {
+                ans.push_back(it.first);
+                it.second--;
+            }
+        }
+
+        return ans;
+    }
+};
