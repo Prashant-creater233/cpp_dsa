@@ -2675,3 +2675,46 @@ public:
         return ' ';
     }
 };
+
+
+
+//valid word
+
+
+
+class Solution {
+public:
+    bool isValid(string word) {
+
+        if(word.size() < 3) return false;
+
+        for(int i = 0; i < word.size(); i++) {
+            if(!((tolower(word[i]) >= 'a' && tolower(word[i]) <= 'z') ||
+                 (word[i] >= '0' && word[i] <= '9'))) {
+                return false;
+            }
+        }
+
+        int count1 = 0;
+        int count2 = 0;
+
+        for(int i = 0; i < word.size(); i++) {
+
+            char ch = tolower(word[i]);
+
+            if(ch == 'a' || ch == 'e' || ch == 'i' ||
+               ch == 'o' || ch == 'u') {
+                count1++;
+            }
+            else if(ch >= 'a' && ch <= 'z') {
+                count2++;
+            }
+        }
+
+        if(count1 < 1 || count2 < 1) {
+            return false;
+        }
+
+        return true;
+    }
+};
