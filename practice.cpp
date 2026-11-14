@@ -2718,3 +2718,34 @@ public:
         return true;
     }
 };
+
+
+// leetcode Delete and Earn
+
+
+class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums) {
+        int maxi = *max_element(nums.begin(), nums.end());
+
+        vector<int> points(maxi + 1, 0);
+
+        for(int num : nums) {
+            points[num] += num;
+        }
+
+        vector<int> dp(maxi + 1, 0);
+
+        dp[0] = points[0];
+
+        if(maxi >= 1) {
+            dp[1] = max(points[0], points[1]);
+        }
+
+        for(int i = 2; i <= maxi; i++) {
+            dp[i] = max(dp[i-1], points[i] + dp[i-2]);
+        }
+
+        return dp[maxi];
+    }
+};
