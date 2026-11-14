@@ -2749,3 +2749,36 @@ public:
         return dp[maxi];
     }
 };
+
+
+// by optimisation
+
+
+class Solution {
+public:
+    int deleteAndEarn(vector<int>& nums) {
+        int maxi = *max_element(nums.begin(), nums.end());
+
+        vector<int> points(maxi + 1, 0);
+
+        for(int num : nums) {
+            points[num] += num;
+        }
+
+        if(maxi == 0) return points[0];
+
+        int prev1 = points[0];
+        int prev2 = max(points[0], points[1]);
+
+        int result = prev2;
+
+        for(int i = 2; i <= maxi; i++) {
+            result = max(prev2, points[i] + prev1);
+
+            prev1 = prev2;
+            prev2 = result;
+        }
+
+        return result;
+    }
+};
