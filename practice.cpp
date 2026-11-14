@@ -2818,3 +2818,30 @@ class Solution {
         return ans;
     }
 };
+
+
+//gfg frog jump
+
+class Solution {
+  public:
+    int minCost(vector<int>& height) {
+        // Code here
+        int n = height.size();
+        if(n == 1) return 0;
+        if(n == 2) return abs(height[0] - height[1]);
+        
+        
+        int prev1 = 0;
+        int prev2 = abs(height[0] - height[1]);
+        int result = prev2;
+        
+        for(int i=2; i<n; i++) {
+            result = min(prev2 + abs(height[i] - height[i-1]), prev1 + abs(height[i] - height[i-2]));
+            
+            prev1 = prev2;
+            prev2 = result;
+        }
+        
+        return result;
+    }
+};
