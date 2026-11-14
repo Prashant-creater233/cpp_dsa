@@ -2782,3 +2782,39 @@ public:
         return result;
     }
 };
+
+//gfg fractional knapsack
+
+class Solution {
+  public:
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        // code here
+        int n = val.size();
+
+        vector<pair<double, int>> items;
+
+        for(int i = 0; i < n; i++) {
+            double ratio = (double)val[i] / wt[i];
+            items.push_back({ratio, i});
+        }
+        
+        sort(items.rbegin(), items.rend()); 
+        
+        double ans = 0.0;
+        
+        for(int i=0; i<val.size(); i++) {
+            int idx = items[i].second;
+            
+            if(wt[idx] <= capacity) {
+                ans += val[idx];
+                capacity -= wt[idx];
+            } else {
+                ans += (items[i].first * capacity);
+                capacity = 0;
+                break;
+            }
+        }
+        
+        return ans;
+    }
+};
