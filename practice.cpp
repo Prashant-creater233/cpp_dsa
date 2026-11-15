@@ -2947,3 +2947,37 @@ public:
         return dp[m-1][n-1];
     }
 };
+
+//two out of three
+
+class Solution {
+public:
+    vector<int> twoOutOfThree(vector<int>& nums1, vector<int>& nums2, vector<int>& nums3) {
+
+        int a[101] = {0};
+        int b[101] = {0};
+        int c[101] = {0};
+
+        for(int x : nums1) {
+            a[x] = 1;
+        }
+
+        for(int x : nums2) {
+            b[x] = 1;
+        }
+
+        for(int x : nums3) {
+            c[x] = 1;
+        }
+
+        vector<int> ans;
+
+        for(int i = 1; i <= 100; i++) {
+            if(a[i] + b[i] + c[i] >= 2) {
+                ans.push_back(i);
+            }
+        }
+
+        return ans;
+    }
+};
