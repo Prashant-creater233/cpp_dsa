@@ -3319,3 +3319,24 @@ public:
 //         return head;
 //     }
 // };
+
+
+//flatten Binary tree to linked list
+
+// class Solution {
+// public:
+//     TreeNode* nextRight = NULL; // declare as globally
+
+//     void flatten(TreeNode* root) {
+//         if(root == NULL) {
+//             return;
+//         }
+
+//         flatten(root->right);
+//         flatten(root->left);
+
+//         root->left = NULL;
+//         root->right = nextRight;
+//         nextRight = root;
+//     }
+// };
