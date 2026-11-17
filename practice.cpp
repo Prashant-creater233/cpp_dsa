@@ -3220,3 +3220,39 @@ public:
         return minn;
     }
 };
+
+
+//Palindrome linked list
+
+// class Solution {
+// public:
+//     bool isPalindrome(ListNode* head) {
+//         vector<int> ans1, ans2;
+
+//         if(head == NULL) return true;
+
+//         ListNode* slow = head;
+//         ListNode* fast = head;
+
+//         while(fast != NULL && fast->next != NULL) {
+//             ans1.push_back(slow->val);
+
+//             slow = slow->next;
+//             fast = fast->next->next;
+//         }
+
+//         // Skip middle node if odd length
+//         if(fast != NULL) {
+//             slow = slow->next;
+//         }
+
+//         while(slow != NULL) {
+//             ans2.push_back(slow->val);
+//             slow = slow->next;
+//         }
+
+//         reverse(ans2.begin(), ans2.end());
+
+//         return ans1 == ans2;
+//     }
+// };
