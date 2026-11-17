@@ -3140,3 +3140,83 @@ public:
 //         return head;
 //     }
 // };
+
+
+// Quick Sort ( recursive)
+
+int partition(vector<int> &arr, int st, int end){
+    int idx = st-1, pivot = arr[end];
+    for(int j=st; j<end; j++){
+        if(arr[j] <= pivot){ // decending order me sort krna hota to yha pe >= use krte
+            idx++;
+            swap(arr[idx], arr[j]);
+        }
+    }
+
+    idx++;
+    swap(arr[idx], arr[end]);
+    return idx;
+}
+
+void quickSort(vector<int> &arr, int st, int end){
+    if(st < end) {
+        int pivIdx = partition(arr, st, end);
+        quickSort(arr, st, pivIdx-1); // left half
+
+        quickSort(arr, pivIdx+1, end); // right half
+    }
+}
+
+int main(){
+    vector<int> arr {12, 31, 35, 8, 32, 17};
+
+    quickSort(arr,0, arr.size()-1);
+
+    for(int val : arr){
+        cout << val << " ";
+    }
+
+    return 0;
+}
+
+
+// Minimum falling path sum
+
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+
+        vector<vector<int>> dp(n, vector<int>(n, 0));
+
+        for(int j=0; j<n; j++) {
+            dp[0][j] = matrix[0][j];
+        }
+
+        for(int i=1; i<n; i++) {
+            for(int j=0; j<n; j++) {
+                int left = INT_MAX;
+                if(j-1>=0) {
+                    left =  dp[i-1][j-1];
+                }
+
+                int right = INT_MAX;
+                if(j+1<n) {
+                    right =  dp[i-1][j+1];
+                }
+
+                int up = dp[i-1][j];
+
+                dp[i][j] = matrix[i][j] + min(left, min(right, up));
+            }
+        }
+
+        int minn = INT_MAX;
+
+        for(int j=0; j<n; j++) {
+            minn = min(minn, dp[n-1][j]);
+        }
+
+        return minn;
+    }
+};
