@@ -3483,3 +3483,40 @@ public:
 //         }
 //     }
 // };
+
+
+// leetcode 19
+
+// class Solution {
+// public:
+//     ListNode* removeNthFromEnd(ListNode* head, int n) {
+//         ListNode* temp = head;
+//         int size = 0;
+
+//         // Calculate length
+//         while(temp != NULL) {
+//             size++;
+//             temp=temp->next;
+//         }
+
+//         int val1 = size - n;
+        
+//         // If head needs to be deleted
+//         if(val1 == 0) {
+//             return head->next;
+//         }
+
+//         temp = head;
+//         // Reach previous node
+//         for(int i=1; i<val1; i++) {
+//             temp=temp->next;
+//         }
+
+//         // Delete node
+//         ListNode* del = temp->next;
+//         temp->next = temp->next->next;
+//         delete del;
+
+//         return head;
+//     }
+// };
