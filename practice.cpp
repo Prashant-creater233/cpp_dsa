@@ -3580,3 +3580,84 @@ public:
         return dp[amount] > amount ? -1 : dp[amount];
     }
 };
+
+
+// recursion case for upper 
+
+// class Solution {
+// public:
+//     int solve(vector<int>& coins, int amount) {
+//         //base case
+//         if(amount == 0) {
+//             return 0;
+//         }
+
+//         if(amount < 0) {
+//             //invalid amount wala case
+//             return INT_MAX;
+//         }
+
+//         int minn = INT_MAX;
+
+//         // i will trying each and every possible combination to find min coins count
+
+//         for(int coin : coins) {
+//             int recursionAns = solve(coins, amount - coins);
+
+//             if(recursionAns != INT_MAX) {
+//                 int totalCoinsUsed = recursionAns + 1;
+//                 minn = min(minn, totalCoinsUsed);
+//             }
+//         }  
+
+//         return minn;
+//     }
+//     int coinChange(vector<int>& coins, int amount) {
+//         // By Recursion
+//         int ans = solve(coins, amount);
+        
+//         if(ans == INT_MAX) {
+//             return -1;
+//         } else {
+//             return ans;
+//         }
+//     }
+// };
+
+
+// memoization dp (coin change
+
+class Solution {
+public:
+    int solve(vector<int>& coins, int amount, vector<int> &dp) {   // memoization
+        //base case
+        if(amount == 0) {
+            return 0;
+        }
+
+        if(dp[amount] != -1) {
+            return dp[amount];
+        }
+
+        int ans = INT_MAX;
+
+        for(int coin : coins) {
+            if(amount >= coin) {
+                int sub = solve(coins, amount - coin, dp);
+
+                if(sub != INT_MAX) {
+                    ans = min(ans, sub + 1);
+                }
+            }
+        }  
+
+        return dp[amount] = ans;;
+    }
+    int coinChange(vector<int>& coins, int amount) {
+        // By Recursion
+        vector<int> dp(amount + 1, -1);
+        int ans = solve(coins, amount, dp);
+        
+        return ans == INT_MAX ? -1 : ans;
+    }
+};
