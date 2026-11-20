@@ -3689,3 +3689,37 @@ public:
         return ans;
     }
 };
+
+
+//coin change two by recursion
+
+// class Solution {
+// public:
+//     int solve(int i, int amount, vector<int> &coins) {
+//         if(amount == 0) {
+//             return 1;
+//         }
+
+//         if(i == n) {
+//             return 0;
+//         }
+
+//         if(coins[idx] > amount) {
+//             return solve(i+1, amount, coins);
+//         }
+
+//         int take = solve(i, amount-coin, coins);
+
+//         int skip = solve(i+1, amount, coins);
+
+//         return take + skip;
+//     }
+
+//     int change(int amount, vector<int>& coins) { //memoization
+//         int n = coins.size();
+
+//         int ans = solve(0, amount, coins);
+
+//         return ans;
+//     }
+// };
