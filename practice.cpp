@@ -3845,3 +3845,11 @@ public:
         return sum - 2*s1;
     }
 };
+
+
+//  string dp problems
+
+// 1 Longest common subsequence
+// 2 delete operation for two strings 
+// 3 edit distance
+// 4 distinct subsequence
