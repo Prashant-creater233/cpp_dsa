@@ -3847,9 +3847,36 @@ public:
 };
 
 
+//product of array except self
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n, 1);
+
+        // prefix
+        for(int i=1; i<n; i++){
+            ans[i] = ans[i-1] * nums[i-1];
+        }
+
+        int suffix = 1;
+        //suffix
+        for(int i=n-2; i>=0; i--){
+            suffix *= nums[i+1]; // ith suffix
+            ans[i] *= suffix;
+        }
+
+        return ans;
+    }
+};
+
+
 //  string dp problems
 
 // 1 Longest common subsequence
 // 2 delete operation for two strings 
 // 3 edit distance
 // 4 distinct subsequence
+
+
