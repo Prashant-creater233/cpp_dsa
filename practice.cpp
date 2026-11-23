@@ -3994,3 +3994,77 @@ public:
         return solve(text1, text2, 0, 0, dp);
     }
 };
+
+
+
+// Edit Distance
+
+class Solution { // recursion
+public:
+    int m, n;
+    int solve(int i, int j, string &s1, string &s2) {
+        if(i == m) {
+            return n - j; // insert
+        }
+
+        if(j == n) {
+            return m - i; //deletion
+        }
+
+        if(s1[i] == s2[j]) {
+            return solve(i+1, j+1, s1, s2);
+        } else {
+            int insert = 1 + solve(i, j+1, s1, s2);
+            int deletion = 1 + solve(i+1, j, s1, s2);
+            int replace = 1 + solve(i+1, j+1, s1, s2);
+
+            return min({insert, deletion, replace});
+        }
+    }
+
+    int minDistance(string word1, string word2) {
+        m = word1.size();
+        n = word2.size();
+
+        return solve(0, 0, word1, word2);
+    }
+};
+
+// memoization  
+
+class Solution {
+public:
+    int m, n;
+    int solve(int i, int j, string &s1, string &s2, vector<vector<int>> &dp) { // memoization
+        if(i == m) {
+            return n - j; // insert
+        }
+
+        if(j == n) {
+            return m - i; //deletion
+        }
+
+        if(dp[i][j] != -1) {
+            return dp[i][j];
+        }
+
+        if(s1[i] == s2[j]) {
+            return dp[i][j] = solve(i+1, j+1, s1, s2, dp);
+        } else {
+            int insert = 1 + solve(i, j+1, s1, s2, dp);
+            int deletion = 1 + solve(i+1, j, s1, s2, dp);
+            int replace = 1 + solve(i+1, j+1, s1, s2, dp);
+
+            return dp[i][j] =  min({insert, deletion, replace});
+        }
+    }
+
+    int minDistance(string word1, string word2) {
+        m = word1.size();
+        n = word2.size();
+
+        vector<vector<int>> dp(m+1, vector<int> (n+1, -1));
+
+        return solve(0, 0, word1, word2, dp);
+    }
+};
