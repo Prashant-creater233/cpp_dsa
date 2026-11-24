@@ -4167,3 +4167,45 @@ public:
     //     return solve(0, -1, nums);
     // }
 };
+
+
+// maximum length of pair chain
+
+class Solution {
+public:
+    int n;
+    int dp[1001][1001];
+    int solve(int i, int P, vector<vector<int>>& nums) { // P-> prev idx   memoization
+        if(i >= n) {
+            return 0;
+        }
+
+        if(P != -1 && dp[i][P] != -1) {
+            return dp[i][P];
+        }
+
+        //take
+        int take = 0;
+        if(P == -1 || nums[P][1] < nums[i][0]) {
+            take = 1 + solve(i+1, i, nums);
+        }
+
+        //skip
+        int skip = solve(i+1, P, nums);
+
+        if(P != -1) {
+            dp[i][P] = max(take, skip);
+        }
+
+        return  max(take, skip);
+    }
+
+    // int findLongestChain(vector<vector<int>>& pairs) {
+    //     n = pairs.size();
+
+    //     memset(dp, -1, sizeof(dp));
+    //     sort(pairs.begin(), pairs.end()); //You can select pairs in any order.
+
+    //     return solve(0, -1, pairs);
+    // }
+};
