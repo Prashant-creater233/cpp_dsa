@@ -4127,3 +4127,43 @@ public:
         return maxLIS;
     }
 };
+
+// memoization
+
+class Solution {
+public:
+    int n;
+    int dp[2501][2501];
+    int solve(int i, int P, vector<int>& nums) { // P-> prev idx   memoization
+        if(i >= n) {
+            return 0;
+        }
+
+        if(P != -1 && dp[i][P] != -1) {
+            return dp[i][P];
+        }
+
+        //take
+        int take = 0;
+        if(P == -1 || nums[P] < nums[i]) {
+            take = 1 + solve(i+1, i, nums);
+        }
+
+        //skip
+        int skip = solve(i+1, P, nums);
+
+        if(P != -1) {
+            dp[i][P] = max(take, skip);
+        }
+
+        return  max(take, skip);
+    }
+
+    // int lengthOfLIS(vector<int>& nums) {
+    //     n = nums.size();
+
+    //     memset(dp, -1, sizeof(dp));
+
+    //     return solve(0, -1, nums);
+    // }
+};
