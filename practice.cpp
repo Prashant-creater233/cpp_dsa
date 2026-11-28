@@ -4293,3 +4293,43 @@ public:
         return max(dp[n][0], dp[n][1]);
     }
 };
+
+
+// leetcode 2926 maximum balanced subsequence sum
+
+class Solution {
+public:
+    unordered_map<string, long long> mp;
+
+    long long solve(int prev, int i, vector<int>& nums) {
+        if(i >= nums.size()) {
+            return 0; //no elements sum = 0
+        }
+
+        string key = to_string(prev) + "_" + to_string(i);
+        if(mp.find(key) != mp.end()) {
+            return mp[key];
+        }
+
+        long long taken = INT_MIN;
+        long long not_taken = INT_MIN;
+
+        if(prev == -1 ||  nums[i] - i >= nums[prev] - prev) {
+            taken = nums[i] + solve(i, i+1, nums);
+        }
+
+        not_taken = solve(prev, i+1, nums);
+
+        return mp[key] = max<long long>(taken, not_taken);
+    }
+
+    long long maxBalancedSubsequenceSum(vector<int>& nums) {
+        int maxEl = *max_element(begin(nums), end(nums));
+
+        if(maxEl <= 0) {
+            return maxEl;
+        }
+
+        return solve(-1, 0, nums);
+    }
+};
