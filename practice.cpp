@@ -4333,3 +4333,41 @@ public:
         return solve(-1, 0, nums);
     }
 };
+
+
+// Bottom up
+
+class Solution {
+public:
+    long long maxBalancedSubsequenceSum(vector<int>& nums) {
+        int n = nums.size();
+
+        int maxEl = *max_element(begin(nums), end(nums));
+
+        if(maxEl <= 0) {
+            return maxEl;
+        }
+
+        vector<long long> dp(n);
+        //t[i] = maximum maBalanedSusequenceSum till index i
+
+        for(int i=0; i<n; i++) {
+            dp[i] = nums[i];
+        }
+
+        long long maxSum = INT_MIN;
+
+        for(int i=0; i<n; i++) {
+            for(int j=0; j<i; j++) {
+                
+                if(nums[i] - i >= nums[j] - j) {
+                    dp[i] = max<long long>(dp[i], dp[j] + nums[i]);
+
+                    maxSum = max(maxSum, dp[i]);
+                }
+            }
+        }
+
+        return maxSum > maxEl ? maxSum : maxEl;
+    }
+};
