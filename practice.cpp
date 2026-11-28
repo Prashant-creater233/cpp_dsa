@@ -4371,3 +4371,40 @@ public:
         return maxSum > maxEl ? maxSum : maxEl;
     }
 };
+
+
+// leetcode 368 largest divisible subset
+
+class Solution {
+public:
+    void solve(int idx, vector<int>& nums, vector<int>& result, vector<int>& temp, int prev) {
+        if(idx >= nums.size()) {
+            if(temp.size() > result.size()) {
+                result = temp;
+            }
+
+            return;
+        }
+
+        //Take option 
+        if(prev == -1 || nums[idx] % prev == 0) {
+            temp.push_back(nums[idx]); // take
+            solve(idx+1, nums, result, temp, nums[idx]);
+            temp.pop_back(); // not take
+        }
+
+        solve(idx+1, nums, result, temp, prev);
+    }
+
+    vector<int> largestDivisibleSubset(vector<int>& nums) {
+        sort(begin(nums), end(nums));
+
+        vector<int> result;
+        vector<int> temp;
+
+        int prev = -1;
+        solve(0, nums, result, temp, prev);
+
+        return result;
+    }
+};
